@@ -59,6 +59,8 @@ android {
                 logger.warn("ATTENTION : android/key.properties absent, APK signé avec la clé de développement.")
                 signingConfigs.getByName("debug")
             }
+            // ML Kit (OCR, scanner) : règles de proguard-rules.pro.
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 }
