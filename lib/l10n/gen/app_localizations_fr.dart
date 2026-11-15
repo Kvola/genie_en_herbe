@@ -1400,6 +1400,7 @@ class AppLocalizationsFr extends AppLocalizations {
       locale: localeName,
       other: '$n heures',
       one: '1 heure',
+      zero: '0 heure',
     );
     return '$_temp0';
   }
@@ -1414,6 +1415,7 @@ class AppLocalizationsFr extends AppLocalizations {
       locale: localeName,
       other: '$minutes minutes',
       one: '1 minute',
+      zero: '0 minute',
     );
     return '$_temp0';
   }

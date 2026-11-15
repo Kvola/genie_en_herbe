@@ -2381,7 +2381,7 @@ abstract class AppLocalizations {
   /// No description provided for @tourHoursValue.
   ///
   /// In fr, this message translates to:
-  /// **'{n, plural, =1{1 heure} other{{n} heures}}'**
+  /// **'{n, plural, =0{0 heure} =1{1 heure} other{{n} heures}}'**
   String tourHoursValue(int n);
 
   /// No description provided for @tourJoinDuel.
@@ -2393,7 +2393,7 @@ abstract class AppLocalizations {
   /// No description provided for @tourMinutesValue.
   ///
   /// In fr, this message translates to:
-  /// **'{minutes, plural, =1{1 minute} other{{minutes} minutes}}'**
+  /// **'{minutes, plural, =0{0 minute} =1{1 minute} other{{minutes} minutes}}'**
   String tourMinutesValue(int minutes);
 
   /// No description provided for @tourModeSolo.

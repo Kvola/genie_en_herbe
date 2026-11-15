@@ -829,7 +829,7 @@
   "tourForfeitResult": "Forfait",
   "tourFormat": "Formule",
   "tourFull": "Le tournoi est complet.",
-  "tourHoursValue": "{n, plural, =1{1 heure} other{{n} heures}}",
+  "tourHoursValue": "{n, plural, =0{0 heure} =1{1 heure} other{{n} heures}}",
   "@tourHoursValue": {
     "placeholders": {
       "n": {
@@ -838,7 +838,7 @@
     }
   },
   "tourJoinDuel": "Rejoindre le duel",
-  "tourMinutesValue": "{minutes, plural, =1{1 minute} other{{minutes} minutes}}",
+  "tourMinutesValue": "{minutes, plural, =0{0 minute} =1{1 minute} other{{minutes} minutes}}",
   "@tourMinutesValue": {
     "placeholders": {
       "minutes": {
