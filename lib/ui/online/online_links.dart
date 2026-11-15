@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../online/online_providers.dart';
 import '../common.dart';
 import '../documents/library_screen.dart';
+import '../profile/groups_screen.dart';
 import 'online_home_screen.dart';
 import 'projection_screen.dart';
 import 'tournament_screen.dart';
@@ -34,13 +35,18 @@ final gameLinksProvider = Provider<Stream<Uri>>((ref) => const Stream.empty());
 
 /// Code de partage d'un document contenu dans un lien (`…/genie-en-herbe/rejoindre/DABC2345`,
 /// `genieenherbe://join/DABC2345`, `?doc=DABC2345`) : 8 caractères commençant par D. Null sinon.
-String? parseDocumentLink(Uri uri) {
+String? parseDocumentLink(Uri uri) => _parseShareLink(uri, 'D', 'doc');
+
+/// Code d'un groupe contenu dans un lien (`…/genie-en-herbe/rejoindre/GABC2345`) : 8 caractères commençant par G.
+String? parseGroupLink(Uri uri) => _parseShareLink(uri, 'G', 'group');
+
+String? _parseShareLink(Uri uri, String prefix, String param) {
   String? clean(String? v) {
     final c = (v ?? '').toUpperCase().replaceAll(RegExp(r'[^A-Z0-9]'), '');
-    return c.length == 8 && c.startsWith('D') ? c : null;
+    return c.length == 8 && c.startsWith(prefix) ? c : null;
   }
 
-  final q = uri.queryParameters['doc'] ?? uri.queryParameters['join'];
+  final q = uri.queryParameters[param] ?? uri.queryParameters['join'];
   if (q != null) return clean(q);
   final segments = [if (uri.scheme == 'genieenherbe' && uri.host.isNotEmpty) uri.host, ...uri.pathSegments];
   final i = segments.indexWhere((s) => s == 'join' || s == 'rejoindre');
@@ -107,10 +113,15 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
 
   Future<void> _handle(Uri uri) async {
     final doc = parseDocumentLink(uri);
-    if (doc != null) {
+    final group = parseGroupLink(uri);
+    if (doc != null || group != null) {
       final me = await ref.read(onlineMeProvider.future).catchError((_) => null);
       if (!mounted || me?.player == null) return; // l'accueil demande d'abord de se connecter
-      await addSharedDocument(context, ref, code: doc);
+      if (doc != null) {
+        await addSharedDocument(context, ref, code: doc);
+      } else {
+        await joinByCode(context, ref, code: group);
+      }
       return;
     }
     final link = parseGameLink(uri);
@@ -134,7 +145,9 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
     final tournament = _id(p['tournament_id']);
     final code = '${p['code'] ?? ''}';
     return switch (p['event']) {
-      'team_invitation' => () => OnlineHomeScreen.open(context),
+      'team_invitation' || 'match_invitation' => () => OnlineHomeScreen.open(context),
+      'tournament_invitation' when tournament != null => () => TournamentScreen.open(context, tournament),
+      'group_joined' when _id(p['group_id']) != null => () => GroupScreen.open(context, _id(p['group_id'])!),
       'rematch' when code.isNotEmpty => () => joinByCode(context, ref, code: code),
       'duel_ready' || 'tournament_eliminated' || 'tournament_won' || 'tournament_cancelled' ||
       'tournament_team_dropped' when tournament != null => () => TournamentScreen.open(context, tournament),
@@ -154,8 +167,22 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
   }
 
   /// Événement reçu application ouverte : un bandeau propose de l'ouvrir.
-  void _showEvent(Map<String, dynamic> p) {
+  ///
+  /// À la (re)connexion, le canal temps réel rejoue les messages récents : un événement
+  /// envoyé il y a plus de deux minutes, ou une invitation qui n'est plus en attente,
+  /// n'est pas remontré.
+  Future<void> _showEvent(Map<String, dynamic> p) async {
     if (!mounted) return;
+    final sentAt = _id(p['sent_at']);
+    final service = ref.read(onlineServiceProvider);
+    if (sentAt != null && service.clock.known && service.clock.now() - sentAt > 120000) return;
+    if (p['event'] == 'match_invitation') {
+      try {
+        final pending = (await service.invitations()).matches;
+        if (!pending.any((i) => i.code == '${p['code']}')) return;
+      } catch (_) {}
+      if (!mounted) return;
+    }
     final now = DateTime.now();
     _seen.removeWhere((_, at) => now.difference(at) > const Duration(minutes: 2));
     final key = playerEventKey(p);
@@ -164,6 +191,10 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
     final l = context.l10n;
     final text = switch (p['event']) {
       'team_invitation' => l.eventInvitation('${p['captain']}', '${p['team_name']}'),
+      'match_invitation' => l.inviteReceived('${p['inviter']}'),
+      'tournament_invitation' => l.eventTournamentInvitation('${p['inviter']}', '${p['name']}'),
+      'group_joined' => l.eventGroupJoined('${p['pseudo']}', '${p['group_name']}'),
+      'questions_ready' => '',
       'team_request' => l.eventRequest('${p['pseudo']}'),
       'duel_ready' => l.eventDuelReady,
       'rematch' => l.eventRematch('${p['code']}'),

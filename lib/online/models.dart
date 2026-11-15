@@ -180,6 +180,9 @@ class MatchState {
   bool get isPublic => json['is_public'] == true;
   List<PageRef> get pages => PageRef.list(json['pages']);
   String get pagesLabel => _str(json['pages_label']);
+
+  /// Invitations envoyées pour ce match (salle d'attente).
+  List<SentInvitation> get invitations => [for (final m in _maps(json['invitations'])) SentInvitation(m)];
   Map<String, dynamic> get settings => (json['settings'] as Map?)?.cast<String, dynamic>() ?? const {};
   int get questionCount => _int(settings['question_count']);
   int get questionSeconds => _int(settings['question_seconds']);
@@ -285,6 +288,9 @@ class TournamentState {
   String get lang => _str(json['lang']);
   String get pagesLabel => _str(json['pages_label']);
   List<PageRef> get pages => PageRef.list(json['pages']);
+
+  /// Tournoi réservé aux membres d'un groupe.
+  String? get groupName => json['group'] is Map ? _str((json['group'] as Map)['name']) : null;
 
   /// Pages propres à un tour : {tour: (ids, libellé)}.
   Map<String, ({List<int> ids, String label})> get roundPages => {
@@ -413,4 +419,89 @@ class ServerConfig {
   }
 
   int defaultOf(String key, int fallback) => _int(defaults[key], fallback);
+}
+
+// ------------------------------------------------------------------ invitations, joueurs, groupes
+
+/// Une invitation envoyée pour ce match (vue de la salle d'attente).
+class SentInvitation {
+  SentInvitation(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get playerId => _int(json['player_id']);
+  String get pseudo => _str(json['pseudo']);
+
+  /// `pending`, `accepted`, `declined`, `expired`.
+  String get state => _str(json['state']);
+}
+
+/// Une invitation reçue à un match.
+class MatchInvitation {
+  MatchInvitation(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get id => _int(json['id']);
+  int get matchId => _int(json['match_id']);
+  String get code => _str(json['code']);
+  String get inviter => _str(json['inviter']);
+  String get pagesLabel => _str(json['pages_label']);
+  String get mode => _str(json['mode']);
+  int get players => _int(json['players']);
+}
+
+/// Un joueur de « Mes joueurs ».
+class Contact {
+  Contact(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get playerId => _int(json['player_id']);
+  String get pseudo => _str(json['pseudo']);
+  bool get favorite => json['favorite'] == true;
+  int get matchesTogether => _int(json['matches_together']);
+  bool get busy => json['busy'] == true;
+}
+
+class GroupMember {
+  GroupMember(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get playerId => _int(json['player_id']);
+  String get pseudo => _str(json['pseudo']);
+  bool get owner => json['owner'] == true;
+  bool get busy => json['busy'] == true;
+}
+
+/// Un groupe (classe, club) : son code se partage, on invite tous ses membres d'un geste.
+class PlayerGroup {
+  PlayerGroup(this.json, [this.link = '']);
+
+  final Map<String, dynamic> json;
+  final String link;
+
+  int get id => _int(json['id']);
+  String get name => _str(json['name']);
+  String get code => _str(json['code']);
+  String get owner => _str(json['owner']);
+  bool get mine => json['mine'] == true;
+  int get memberCount => _int(json['member_count']);
+  List<GroupMember> get members => [for (final m in _maps(json['members'])) GroupMember(m)];
+}
+
+/// Résultat d'un envoi d'invitations.
+class InviteResult {
+  InviteResult(this.json);
+
+  final Map<String, dynamic> json;
+
+  List<String> get invited => (json['invited'] as List? ?? const []).map((e) => '$e').toList();
+  List<String> get busy => (json['busy'] as List? ?? const []).map((e) => '$e').toList();
+
+  /// (pseudo, motif) : `self`, `blocked`, `policy`, `already`, `limit`, `group`.
+  List<({String pseudo, String reason})> get skipped => [
+    for (final m in _maps(json['skipped'])) (pseudo: _str(m['pseudo']), reason: _str(m['reason'])),
+  ];
 }

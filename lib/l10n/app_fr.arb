@@ -39,9 +39,33 @@
   "aiTitle": "Questions rédigées par l’IA",
   "aiUnavailable": "IA indisponible pour l’instant : questions tirées du texte sans IA.",
   "appTitle": "Génie en herbe",
+  "block": "Bloquer",
+  "blockHint": "Ce joueur ne pourra plus vous inviter. Il n’en est pas prévenu.",
+  "blockPlayer": "Bloquer {pseudo} ?",
+  "@blockPlayer": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      }
+    }
+  },
+  "blockedTitle": "Joueurs bloqués",
   "cancel": "Annuler",
   "close": "Fermer",
   "confirm": "Confirmer",
+  "contactFavorite": "Mettre en favori",
+  "contactMatches": "{count, plural, =0{aucun match ensemble} =1{1 match ensemble} other{{count} matchs ensemble}}",
+  "@contactMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contactUnfavorite": "Retirer des favoris",
+  "contactsEmpty": "Les joueurs de vos matchs apparaîtront ici. Cherchez un pseudo pour inviter quelqu’un d’autre.",
+  "contactsHint": "Ceux avec qui vous avez joué, vos favoris, qui peut vous inviter",
+  "contactsTitle": "Mes joueurs",
   "copied": "Copié",
   "copy": "Copier",
   "createChangePages": "Changer les pages",
@@ -204,6 +228,17 @@
   "errUnknownCode": "Aucun match ni tournoi avec ce code.",
   "errUnsupported": "Format non pris en charge.",
   "eventDuelReady": "Tournoi : votre duel vous attend !",
+  "eventGroupJoined": "{pseudo} a rejoint le groupe « {name} »",
+  "@eventGroupJoined": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "eventInvitation": "{captain} vous invite dans l’équipe « {team} »",
   "@eventInvitation": {
     "placeholders": {
@@ -232,6 +267,88 @@
     }
   },
   "eventSee": "Voir",
+  "eventTournamentInvitation": "{who} vous invite au tournoi « {name} »",
+  "@eventTournamentInvitation": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "groupBy": "créé par {owner}",
+  "@groupBy": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "groupCode": "Code du groupe",
+  "groupCreate": "Créer un groupe",
+  "groupDelete": "Supprimer le groupe",
+  "groupDeleteHint": "Le groupe disparaît pour tous ses membres.",
+  "groupJoin": "Rejoindre un groupe",
+  "groupJoined": "Vous avez rejoint le groupe « {name} ».",
+  "@groupJoined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "groupLeave": "Quitter le groupe",
+  "groupMembers": "{count, plural, =0{aucun membre} =1{1 membre} other{{count} membres}}",
+  "@groupMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "groupMembersTitle": "Membres",
+  "groupMine": "créé par vous",
+  "groupName": "Nom du groupe",
+  "groupNotAGroup": "Ce code n’est pas celui d’un groupe.",
+  "groupOwner": "créateur",
+  "groupRemoveMember": "Retirer {pseudo} du groupe ?",
+  "@groupRemoveMember": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      }
+    }
+  },
+  "groupRename": "Renommer le groupe",
+  "groupRenewCode": "Nouveau code",
+  "groupRenewCodeHint": "L’ancien code ne permettra plus d’entrer dans le groupe. Les membres actuels restent.",
+  "groupShareHint": "Dans Génie en herbe : Jouer → Rejoindre, puis saisir ce code (ou ouvrir le lien).",
+  "groupShareText": "Rejoins le groupe « {name} » sur Génie en herbe. Code : {code}",
+  "@groupShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "groupTransfer": "Confier le groupe à {pseudo} ?",
+  "@groupTransfer": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      }
+    }
+  },
+  "groupTransferAction": "Confier le groupe",
+  "groupTransferHint": "Ce joueur deviendra le créateur : lui seul pourra gérer le groupe.",
+  "groupsHint": "Une classe, un club : invitez tout le groupe d’un geste",
+  "groupsIntro": "Créez un groupe (une classe, un club), partagez son code : chacun le saisit une fois. Vous pourrez ensuite inviter tout le groupe à un match, ou lui réserver un tournoi.",
+  "groupsTitle": "Mes groupes",
   "homeScreenBody": "Touchez Partager (le carré avec une flèche), puis « Sur l’écran d’accueil ». L’application s’ouvrira en plein écran et vos données seront mieux conservées.",
   "homeScreenDismiss": "Compris",
   "homeScreenTitle": "Ajoutez l’application à l’écran d’accueil",
@@ -315,6 +432,80 @@
     }
   },
   "importTitle": "Charger un document",
+  "inviteBusy": "déjà dans une partie : {names}",
+  "@inviteBusy": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteButton": "Inviter des joueurs",
+  "inviteDeclined": "a refusé",
+  "inviteGroup": "Inviter le groupe",
+  "inviteNone": "Aucune invitation envoyée",
+  "invitePending": "invité",
+  "invitePlayersIn": "{count, plural, =0{personne dans la salle} =1{1 joueur déjà dans la salle} other{{count} joueurs déjà dans la salle}}",
+  "@invitePlayersIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "invitePolicyAll": "De tout le monde",
+  "invitePolicyKnown": "De mes joueurs et de mes groupes seulement",
+  "invitePolicyNone": "De personne",
+  "invitePolicyTitle": "Recevoir les invitations",
+  "inviteReceived": "{who} vous invite à un match",
+  "@inviteReceived": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteSelected": "{count, plural, =0{Inviter} =1{Inviter 1 joueur} other{Inviter {count} joueurs}}",
+  "@inviteSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteSent": "{count, plural, =0{Aucun joueur invité} =1{1 joueur invité} other{{count} joueurs invités}}",
+  "@inviteSent": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteSkipAlready": "{count} déjà là ou déjà invité(s)",
+  "@inviteSkipAlready": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteSkipGroup": "{count} hors du groupe du tournoi",
+  "@inviteSkipGroup": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteSkipLimit": "limite d’invitations atteinte pour cette heure",
+  "inviteSkipRefused": "{count} n’accepte(nt) pas les invitations",
+  "@inviteSkipRefused": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "libraryEmptyBody": "Chargez un cours ou un manuel avec « Charger un document », ajoutez un document partagé par son code, ou parcourez les documents publics.",
   "libraryEmptyTitle": "Votre bibliothèque est vide",
   "libraryMine": "Mes documents",
@@ -725,6 +916,7 @@
   "signInSendCode": "Recevoir le code par WhatsApp",
   "signInTitle": "Devenir joueur",
   "signInVerify": "Valider",
+  "socialTitle": "Joueurs et groupes",
   "sourceAi": "IA",
   "sourceManual": "Écrite par vous",
   "sourceOffline": "Tirée du texte",
@@ -829,6 +1021,17 @@
   "tourForfeitResult": "Forfait",
   "tourFormat": "Formule",
   "tourFull": "Le tournoi est complet.",
+  "tourGroupField": "Réservé à un groupe",
+  "tourGroupFieldHint": "Seuls les membres du groupe pourront s’inscrire.",
+  "tourGroupNone": "Ouvert à tous",
+  "tourGroupOnly": "Réservé aux membres du groupe « {name} »",
+  "@tourGroupOnly": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "tourHoursValue": "{n, plural, =0{0 heure} =1{1 heure} other{{n} heures}}",
   "@tourHoursValue": {
     "placeholders": {
@@ -1045,6 +1248,7 @@
   "tourYouReady": "Vous êtes prêt",
   "tourYouWon": "Vous avez gagné le tournoi !",
   "tourYourDuel": "Votre duel",
+  "unblock": "Débloquer",
   "updateAvailable": "Version {version} disponible",
   "@updateAvailable": {
     "placeholders": {

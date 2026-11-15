@@ -67,6 +67,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Génie en herbe';
 
   @override
+  String get block => 'Block';
+
+  @override
+  String get blockHint =>
+      'This player will no longer be able to invite you. They are not told.';
+
+  @override
+  String blockPlayer(String pseudo) {
+    return 'Block $pseudo?';
+  }
+
+  @override
+  String get blockedTitle => 'Blocked players';
+
+  @override
   String get cancel => 'Cancel';
 
   @override
@@ -74,6 +89,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirm => 'Confirm';
+
+  @override
+  String get contactFavorite => 'Add to favourites';
+
+  @override
+  String contactMatches(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count matches together',
+      one: '1 match together',
+      zero: 'no match together',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactUnfavorite => 'Remove from favourites';
+
+  @override
+  String get contactsEmpty =>
+      'Players from your matches will appear here. Search a nickname to invite someone else.';
+
+  @override
+  String get contactsHint =>
+      'People you played with, your favourites, who can invite you';
+
+  @override
+  String get contactsTitle => 'My players';
 
   @override
   String get copied => 'Copied';
@@ -397,6 +441,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventDuelReady => 'Tournament: your duel is waiting!';
 
   @override
+  String eventGroupJoined(String pseudo, String name) {
+    return '$pseudo joined the “$name” group';
+  }
+
+  @override
   String eventInvitation(String captain, String team) {
     return '$captain invites you to the “$team” team';
   }
@@ -413,6 +462,112 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventSee => 'See';
+
+  @override
+  String eventTournamentInvitation(String who, String name) {
+    return '$who invites you to the “$name” tournament';
+  }
+
+  @override
+  String groupBy(String owner) {
+    return 'created by $owner';
+  }
+
+  @override
+  String get groupCode => 'Group code';
+
+  @override
+  String get groupCreate => 'Create a group';
+
+  @override
+  String get groupDelete => 'Delete the group';
+
+  @override
+  String get groupDeleteHint => 'The group disappears for all its members.';
+
+  @override
+  String get groupJoin => 'Join a group';
+
+  @override
+  String groupJoined(String name) {
+    return 'You joined the “$name” group.';
+  }
+
+  @override
+  String get groupLeave => 'Leave the group';
+
+  @override
+  String groupMembers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+      zero: 'no members',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get groupMembersTitle => 'Members';
+
+  @override
+  String get groupMine => 'created by you';
+
+  @override
+  String get groupName => 'Group name';
+
+  @override
+  String get groupNotAGroup => 'This code is not a group code.';
+
+  @override
+  String get groupOwner => 'creator';
+
+  @override
+  String groupRemoveMember(String pseudo) {
+    return 'Remove $pseudo from the group?';
+  }
+
+  @override
+  String get groupRename => 'Rename the group';
+
+  @override
+  String get groupRenewCode => 'New code';
+
+  @override
+  String get groupRenewCodeHint =>
+      'The old code will no longer let anyone join. Current members stay.';
+
+  @override
+  String get groupShareHint =>
+      'In Génie en herbe: Play → Join, then type this code (or open the link).';
+
+  @override
+  String groupShareText(String name, String code) {
+    return 'Join the “$name” group on Génie en herbe. Code: $code';
+  }
+
+  @override
+  String groupTransfer(String pseudo) {
+    return 'Hand the group over to $pseudo?';
+  }
+
+  @override
+  String get groupTransferAction => 'Hand over the group';
+
+  @override
+  String get groupTransferHint =>
+      'They will become the creator: only they will be able to manage the group.';
+
+  @override
+  String get groupsHint => 'A class, a club: invite the whole group at once';
+
+  @override
+  String get groupsIntro =>
+      'Create a group (a class, a club) and share its code: everyone types it once. You can then invite the whole group to a match, or reserve a tournament for it.';
+
+  @override
+  String get groupsTitle => 'My groups';
 
   @override
   String get homeScreenBody =>
@@ -528,6 +683,97 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get importTitle => 'Upload a document';
+
+  @override
+  String inviteBusy(String names) {
+    return 'already in a game: $names';
+  }
+
+  @override
+  String get inviteButton => 'Invite players';
+
+  @override
+  String get inviteDeclined => 'declined';
+
+  @override
+  String get inviteGroup => 'Invite the group';
+
+  @override
+  String get inviteNone => 'No invitation sent';
+
+  @override
+  String get invitePending => 'invited';
+
+  @override
+  String invitePlayersIn(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count players already in the room',
+      one: '1 player already in the room',
+      zero: 'nobody in the room yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get invitePolicyAll => 'From everyone';
+
+  @override
+  String get invitePolicyKnown => 'From my players and groups only';
+
+  @override
+  String get invitePolicyNone => 'From no one';
+
+  @override
+  String get invitePolicyTitle => 'Receive invitations';
+
+  @override
+  String inviteReceived(String who) {
+    return '$who invites you to a match';
+  }
+
+  @override
+  String inviteSelected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Invite $count players',
+      one: 'Invite 1 player',
+      zero: 'Invite',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String inviteSent(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count players invited',
+      one: '1 player invited',
+      zero: 'No player invited',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String inviteSkipAlready(int count) {
+    return '$count already here or already invited';
+  }
+
+  @override
+  String inviteSkipGroup(int count) {
+    return '$count outside the tournament’s group';
+  }
+
+  @override
+  String get inviteSkipLimit => 'invitation limit reached for this hour';
+
+  @override
+  String inviteSkipRefused(int count) {
+    return '$count do(es) not accept invitations';
+  }
 
   @override
   String get libraryEmptyBody =>
@@ -1213,6 +1459,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInVerify => 'Confirm';
 
   @override
+  String get socialTitle => 'Players and groups';
+
+  @override
   String get sourceAi => 'AI';
 
   @override
@@ -1385,6 +1634,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tourFull => 'The tournament is full.';
+
+  @override
+  String get tourGroupField => 'Restricted to a group';
+
+  @override
+  String get tourGroupFieldHint =>
+      'Only the group’s members will be able to register.';
+
+  @override
+  String get tourGroupNone => 'Open to everyone';
+
+  @override
+  String tourGroupOnly(String name) {
+    return 'Restricted to members of the “$name” group';
+  }
 
   @override
   String tourHoursValue(int n) {
@@ -1650,6 +1914,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tourYourDuel => 'Your duel';
+
+  @override
+  String get unblock => 'Unblock';
 
   @override
   String updateAvailable(String version) {

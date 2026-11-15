@@ -8,6 +8,7 @@ import '../../online/online_providers.dart';
 import '../common.dart';
 import 'create_match_screen.dart';
 import 'create_tournament_screen.dart';
+import '../profile/groups_screen.dart';
 import 'match_screen.dart';
 import 'online_common.dart';
 import 'projection_screen.dart';
@@ -20,12 +21,14 @@ class _Lobby {
   _Lobby(this.open, this.invitations, this.tournaments);
 
   final ({List<OpenMatch> matches, List<OpenTournament> tournaments}) open;
-  final List<Invitation> invitations;
+  final ({List<Invitation> teams, List<MatchInvitation> matches}) invitations;
   final List<OpenTournament> tournaments;
 }
 
 final _lobbyProvider = FutureProvider.autoDispose<_Lobby>((ref) async {
   final service = ref.watch(onlineServiceProvider);
+  // Rechargé à chaque événement du joueur (invitation reçue…).
+  ref.watch(playerEventsProvider);
   // Rechargé quand la situation du joueur change (fin d'un match, inscription à un tournoi…).
   ref.watch(onlineMeProvider.select((me) {
     final p = me.value?.player;
@@ -34,7 +37,7 @@ final _lobbyProvider = FutureProvider.autoDispose<_Lobby>((ref) async {
   final results = await Future.wait([service.openGames(), service.invitations(), service.myTournaments()]);
   return _Lobby(
     results[0] as ({List<OpenMatch> matches, List<OpenTournament> tournaments}),
-    results[1] as List<Invitation>,
+    results[1] as ({List<Invitation> teams, List<MatchInvitation> matches}),
     results[2] as List<OpenTournament>,
   );
 });
@@ -234,9 +237,35 @@ class _PlayerHome extends ConsumerWidget {
   List<Widget> _lists(BuildContext context, WidgetRef ref, _Lobby data) {
     final l = context.l10n;
     return [
-      if (data.invitations.isNotEmpty) ...[
+      if (data.invitations.teams.isNotEmpty || data.invitations.matches.isNotEmpty) ...[
         SectionTitle(l.onlineInvitations),
-        for (final inv in data.invitations)
+        for (final inv in data.invitations.matches)
+          Card(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            child: ListTile(
+              leading: const Icon(Icons.mail_outline),
+              title: Text(l.inviteReceived(inv.inviter)),
+              subtitle: Text('${inv.pagesLabel} · ${l.invitePlayersIn(inv.players)}'),
+              trailing: Wrap(
+                children: [
+                  IconButton(
+                    tooltip: l.teamDecline,
+                    icon: const Icon(Icons.close),
+                    onPressed: () async {
+                      await runOnline(context, () => ref.read(onlineServiceProvider).answerInvitation(inv.id, accept: false));
+                      ref.invalidate(_lobbyProvider);
+                    },
+                  ),
+                  IconButton(
+                    tooltip: l.teamAccept,
+                    icon: const Icon(Icons.check),
+                    onPressed: () => acceptMatchInvitation(context, ref, inv.id),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        for (final inv in data.invitations.teams)
           Card(
             child: ListTile(
               leading: const Icon(Icons.mail_outline),
@@ -350,11 +379,22 @@ Future<void> joinByCode(BuildContext context, WidgetRef ref, {String? code}) asy
   final r = await runOnline(context, () => ref.read(onlineServiceProvider).join(code!));
   if (r == null || !context.mounted) return;
   unawaited(ref.read(onlineMeProvider.notifier).refresh());
-  if (r.match != null) {
+  if (r.group != null) {
+    context.toast(l.groupJoined(r.group!.name));
+    await GroupScreen.open(context, r.group!.id);
+  } else if (r.match != null) {
     await MatchScreen.open(context, r.match!.match.id, seed: r.match);
   } else if (r.tournament != null) {
     await TournamentScreen.open(context, r.tournament!.tournament.id, seed: r.tournament);
   }
+}
+
+/// Accepter une invitation à un match : on entre dans sa salle d'attente.
+Future<void> acceptMatchInvitation(BuildContext context, WidgetRef ref, int invitationId) async {
+  final env = await runOnline(context, () => ref.read(onlineServiceProvider).answerInvitation(invitationId, accept: true));
+  if (env == null || !context.mounted) return;
+  unawaited(ref.read(onlineMeProvider.notifier).refresh());
+  await MatchScreen.open(context, env.match.id, seed: env);
 }
 
 /// Scanner le QR code d'une partie : rejoindre (match ou tournoi) ou regarder (projection).

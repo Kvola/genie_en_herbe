@@ -19,3 +19,23 @@ Génie en herbe existe aussi en version web, sans rien installer : ouvrez la pag
 - **Même compte** : connectez-vous avec le même numéro ; vous retrouvez vos documents, vos matchs et vos tournois.
 - **Ce qui ne marche que dans l'application Android** : photographier des pages et lire un PDF scanné (reconnaissance de texte), scanner le QR code d'une partie (dans le navigateur, saisissez le code).
 - **Sans réseau** : l'application s'ouvre, et les pages déjà lues restent disponibles pour s'entraîner ; elles sont gardées par le navigateur, sur cet appareil.
+
+## Inviter des joueurs
+
+Dans la salle d'attente d'un match, touchez **Inviter des joueurs** :
+
+- **Par pseudo** : tapez le début du pseudo, cochez le joueur.
+- **Mes joueurs** : ceux avec qui vous avez déjà joué (vos favoris en tête) ; cochez-en plusieurs.
+- **Mes groupes** : **Inviter le groupe** prévient tous ses membres d'un geste.
+
+L'invité est prévenu, accepte (il entre dans la salle d'attente) ou refuse ; la salle d'attente montre qui est invité et qui a refusé. Une invitation tombe d'elle-même quand le match commence. Le code du match, son QR code et le lien WhatsApp marchent toujours, pour ceux qui n'ont pas encore de compte.
+
+> **Situation** — M. Traoré a créé le groupe « 3e B » et affiché son code au tableau : chaque élève l'a saisi une fois dans **Jouer → Rejoindre**. Avant chaque séance de révision, il crée le match puis touche **Inviter le groupe** : toute la classe le retrouve dans **Jouer**, rubrique Invitations.
+
+### Groupes
+
+**Profil → Mes groupes** : créez un groupe (une classe, un club) et partagez son code (WhatsApp, QR code). Un tournoi peut être **réservé à un groupe** : seuls ses membres peuvent s'y inscrire. Le créateur peut renommer le groupe, changer son code, retirer un membre ou confier le groupe à un autre membre.
+
+### Qui peut m'inviter ?
+
+**Profil → Mes joueurs** : choisissez de recevoir les invitations de tout le monde, seulement de vos joueurs et de vos groupes, ou de personne ; bloquez un joueur si besoin (il n'en est pas prévenu). Votre numéro de téléphone n'est jamais montré aux autres joueurs.

@@ -24,7 +24,10 @@ class CreateTournamentScreen extends ConsumerStatefulWidget {
   ConsumerState<CreateTournamentScreen> createState() => _CreateTournamentScreenState();
 }
 
+final _myGroupsProvider = FutureProvider.autoDispose((ref) => ref.watch(onlineServiceProvider).groups());
+
 class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen> {
+  int? _groupId;
   final _form = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _teamName = TextEditingController();
@@ -134,6 +137,24 @@ class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen>
                     requiredCount: count + 3,
                     onChanged: (v) => setState(() => _pages = v),
                   ),
+                  if (ref.watch(_myGroupsProvider).value case final groups? when groups.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    DropdownButtonFormField<int?>(
+                      initialValue: _groupId,
+                      isExpanded: true,
+                      decoration: InputDecoration(
+                        labelText: l.tourGroupField,
+                        helperText: l.tourGroupFieldHint,
+                        helperMaxLines: 2,
+                        prefixIcon: const Icon(Icons.groups_outlined),
+                      ),
+                      items: [
+                        DropdownMenuItem<int?>(value: null, child: Text(l.tourGroupNone)),
+                        for (final g in groups) DropdownMenuItem<int?>(value: g.id, child: Text(g.name)),
+                      ],
+                      onChanged: (v) => setState(() => _groupId = v),
+                    ),
+                  ],
                   SectionTitle(l.tourEntriesRange(minEntries, maxEntries)),
                   if (cap > 2)
                     RangeSlider(
@@ -224,6 +245,7 @@ class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen>
                             'name': _name.text.trim(),
                             'mode': _mode,
                             'pages': _pages.pageIds,
+                            'group_id': _groupId,
                             'question_count': count,
                             'question_seconds': seconds,
                             'hand_seconds': hand,

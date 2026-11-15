@@ -177,9 +177,13 @@ class OnlineService {
     );
   }
 
-  Future<List<Invitation>> invitations() async {
+  /// Invitations reçues : dans une équipe, et à un match.
+  Future<({List<Invitation> teams, List<MatchInvitation> matches})> invitations() async {
     final r = await read('/invitations');
-    return [for (final m in (r['invitations'] as List? ?? const []).whereType<Map>()) Invitation(m.cast())];
+    return (
+      teams: [for (final m in (r['invitations'] as List? ?? const []).whereType<Map>()) Invitation(m.cast())],
+      matches: [for (final m in (r['match_invitations'] as List? ?? const []).whereType<Map>()) MatchInvitation(m.cast())],
+    );
   }
 
   Future<List<PastMatch>> history() async {
@@ -314,11 +318,81 @@ class OnlineService {
   }
 
   /// Un code saisi, scanné ou reçu par lien : match (rejoint) ou tournoi (fiche).
-  Future<({MatchEnvelope? match, TournamentEnvelope? tournament})> join(String code) async {
+  /// Un code saisi, scanné ou reçu par lien : match (rejoint), tournoi (fiche) ou groupe (rejoint).
+  Future<({MatchEnvelope? match, TournamentEnvelope? tournament, PlayerGroup? group})> join(String code) async {
     final r = await write('/join', {'code': code});
-    if (r['kind'] == 'tournament') return (match: null, tournament: TournamentEnvelope.parse(r));
-    return (match: MatchEnvelope.parse(r), tournament: null);
+    if (r['kind'] == 'tournament') return (match: null, tournament: TournamentEnvelope.parse(r), group: null);
+    if (r['kind'] == 'group') return (match: null, tournament: null, group: PlayerGroup((r['group'] as Map).cast()));
+    return (match: MatchEnvelope.parse(r), tournament: null, group: null);
   }
+
+  // ------------------------------------------------------------------ inviter
+  Future<({InviteResult result, MatchEnvelope envelope})> inviteToMatch(
+    int matchId, {
+    List<int> playerIds = const [],
+    int? groupId,
+  }) async {
+    final r = await write('/match/invite', {'match_id': matchId, 'player_ids': playerIds, 'group_id': ?groupId});
+    return (result: InviteResult(r), envelope: MatchEnvelope.parse(r));
+  }
+
+  Future<InviteResult> inviteToTournament(int tournamentId, {List<int> playerIds = const [], int? groupId}) async =>
+      InviteResult(await write('/tournament/invite', {
+        'tournament_id': tournamentId,
+        'player_ids': playerIds,
+        'group_id': ?groupId,
+      }));
+
+  /// Accepter (rend le match rejoint) ou refuser (rend null) une invitation.
+  Future<MatchEnvelope?> answerInvitation(int invitationId, {required bool accept}) async {
+    final r = await write('/match/invitation/answer', {'invitation_id': invitationId, 'accept': accept});
+    return accept ? MatchEnvelope.parse(r) : null;
+  }
+
+  Future<({List<Contact> contacts, List<({int id, String pseudo})> blocked, String invitePolicy})> contacts() async {
+    final r = await read('/contacts');
+    return (
+      contacts: [for (final m in (r['contacts'] as List? ?? const []).whereType<Map>()) Contact(m.cast())],
+      blocked: [
+        for (final m in (r['blocked'] as List? ?? const []).whereType<Map>())
+          (id: (m['id'] as num).toInt(), pseudo: '${m['pseudo']}'),
+      ],
+      invitePolicy: '${r['invite_policy'] ?? 'all'}',
+    );
+  }
+
+  Future<void> setFavorite(int playerId, bool favorite) =>
+      write('/contact/favorite', {'player_id': playerId, 'favorite': favorite});
+
+  Future<void> setBlocked(int playerId, bool blocked) => write('/player/block', {'player_id': playerId, 'blocked': blocked});
+
+  Future<String> setInvitePolicy(String policy) async =>
+      '${(await write('/player/settings', {'invite_policy': policy}))['invite_policy']}';
+
+  // ------------------------------------------------------------------ groupes
+  Future<List<PlayerGroup>> groups() async {
+    final r = await read('/groups');
+    return [for (final m in (r['groups'] as List? ?? const []).whereType<Map>()) PlayerGroup(m.cast())];
+  }
+
+  PlayerGroup _group(Map<String, dynamic> r) => PlayerGroup((r['group'] as Map).cast(), '${r['link'] ?? ''}');
+
+  Future<PlayerGroup> createGroup(String name) async => _group(await write('/group/create', {'name': name}));
+
+  Future<PlayerGroup> group(int id) async => _group(await read('/group/get', {'group_id': id}));
+
+  Future<PlayerGroup> updateGroup(int id, {String? name, bool renewCode = false, int? removePlayerId, int? transferTo}) async =>
+      _group(await write('/group/update', {
+        'group_id': id,
+        'name': ?name,
+        'renew_code': renewCode,
+        'remove_player_id': ?removePlayerId,
+        'transfer_to': ?transferTo,
+      }));
+
+  Future<void> leaveGroup(int id) => write('/group/leave', {'group_id': id});
+
+  Future<void> deleteGroup(int id) => write('/group/delete', {'group_id': id});
 
   // ------------------------------------------------------------------ match
   Future<MatchEnvelope> createMatch(Map<String, dynamic> values) async =>

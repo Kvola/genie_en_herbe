@@ -188,6 +188,30 @@ abstract class AppLocalizations {
   /// **'Génie en herbe'**
   String get appTitle;
 
+  /// No description provided for @block.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloquer'**
+  String get block;
+
+  /// No description provided for @blockHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce joueur ne pourra plus vous inviter. Il n’en est pas prévenu.'**
+  String get blockHint;
+
+  /// No description provided for @blockPlayer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloquer {pseudo} ?'**
+  String blockPlayer(String pseudo);
+
+  /// No description provided for @blockedTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Joueurs bloqués'**
+  String get blockedTitle;
+
   /// No description provided for @cancel.
   ///
   /// In fr, this message translates to:
@@ -205,6 +229,42 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Confirmer'**
   String get confirm;
+
+  /// No description provided for @contactFavorite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre en favori'**
+  String get contactFavorite;
+
+  /// No description provided for @contactMatches.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{aucun match ensemble} =1{1 match ensemble} other{{count} matchs ensemble}}'**
+  String contactMatches(int count);
+
+  /// No description provided for @contactUnfavorite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer des favoris'**
+  String get contactUnfavorite;
+
+  /// No description provided for @contactsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les joueurs de vos matchs apparaîtront ici. Cherchez un pseudo pour inviter quelqu’un d’autre.'**
+  String get contactsEmpty;
+
+  /// No description provided for @contactsHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ceux avec qui vous avez joué, vos favoris, qui peut vous inviter'**
+  String get contactsHint;
+
+  /// No description provided for @contactsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes joueurs'**
+  String get contactsTitle;
 
   /// No description provided for @copied.
   ///
@@ -722,6 +782,12 @@ abstract class AppLocalizations {
   /// **'Tournoi : votre duel vous attend !'**
   String get eventDuelReady;
 
+  /// No description provided for @eventGroupJoined.
+  ///
+  /// In fr, this message translates to:
+  /// **'{pseudo} a rejoint le groupe « {name} »'**
+  String eventGroupJoined(String pseudo, String name);
+
   /// No description provided for @eventInvitation.
   ///
   /// In fr, this message translates to:
@@ -745,6 +811,168 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Voir'**
   String get eventSee;
+
+  /// No description provided for @eventTournamentInvitation.
+  ///
+  /// In fr, this message translates to:
+  /// **'{who} vous invite au tournoi « {name} »'**
+  String eventTournamentInvitation(String who, String name);
+
+  /// No description provided for @groupBy.
+  ///
+  /// In fr, this message translates to:
+  /// **'créé par {owner}'**
+  String groupBy(String owner);
+
+  /// No description provided for @groupCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code du groupe'**
+  String get groupCode;
+
+  /// No description provided for @groupCreate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un groupe'**
+  String get groupCreate;
+
+  /// No description provided for @groupDelete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le groupe'**
+  String get groupDelete;
+
+  /// No description provided for @groupDeleteHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le groupe disparaît pour tous ses membres.'**
+  String get groupDeleteHint;
+
+  /// No description provided for @groupJoin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre un groupe'**
+  String get groupJoin;
+
+  /// No description provided for @groupJoined.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez rejoint le groupe « {name} ».'**
+  String groupJoined(String name);
+
+  /// No description provided for @groupLeave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quitter le groupe'**
+  String get groupLeave;
+
+  /// No description provided for @groupMembers.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{aucun membre} =1{1 membre} other{{count} membres}}'**
+  String groupMembers(int count);
+
+  /// No description provided for @groupMembersTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Membres'**
+  String get groupMembersTitle;
+
+  /// No description provided for @groupMine.
+  ///
+  /// In fr, this message translates to:
+  /// **'créé par vous'**
+  String get groupMine;
+
+  /// No description provided for @groupName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du groupe'**
+  String get groupName;
+
+  /// No description provided for @groupNotAGroup.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce code n’est pas celui d’un groupe.'**
+  String get groupNotAGroup;
+
+  /// No description provided for @groupOwner.
+  ///
+  /// In fr, this message translates to:
+  /// **'créateur'**
+  String get groupOwner;
+
+  /// No description provided for @groupRemoveMember.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer {pseudo} du groupe ?'**
+  String groupRemoveMember(String pseudo);
+
+  /// No description provided for @groupRename.
+  ///
+  /// In fr, this message translates to:
+  /// **'Renommer le groupe'**
+  String get groupRename;
+
+  /// No description provided for @groupRenewCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau code'**
+  String get groupRenewCode;
+
+  /// No description provided for @groupRenewCodeHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'L’ancien code ne permettra plus d’entrer dans le groupe. Les membres actuels restent.'**
+  String get groupRenewCodeHint;
+
+  /// No description provided for @groupShareHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dans Génie en herbe : Jouer → Rejoindre, puis saisir ce code (ou ouvrir le lien).'**
+  String get groupShareHint;
+
+  /// No description provided for @groupShareText.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoins le groupe « {name} » sur Génie en herbe. Code : {code}'**
+  String groupShareText(String name, String code);
+
+  /// No description provided for @groupTransfer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confier le groupe à {pseudo} ?'**
+  String groupTransfer(String pseudo);
+
+  /// No description provided for @groupTransferAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confier le groupe'**
+  String get groupTransferAction;
+
+  /// No description provided for @groupTransferHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce joueur deviendra le créateur : lui seul pourra gérer le groupe.'**
+  String get groupTransferHint;
+
+  /// No description provided for @groupsHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une classe, un club : invitez tout le groupe d’un geste'**
+  String get groupsHint;
+
+  /// No description provided for @groupsIntro.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créez un groupe (une classe, un club), partagez son code : chacun le saisit une fois. Vous pourrez ensuite inviter tout le groupe à un match, ou lui réserver un tournoi.'**
+  String get groupsIntro;
+
+  /// No description provided for @groupsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes groupes'**
+  String get groupsTitle;
 
   /// No description provided for @homeScreenBody.
   ///
@@ -937,6 +1165,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Charger un document'**
   String get importTitle;
+
+  /// No description provided for @inviteBusy.
+  ///
+  /// In fr, this message translates to:
+  /// **'déjà dans une partie : {names}'**
+  String inviteBusy(String names);
+
+  /// No description provided for @inviteButton.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inviter des joueurs'**
+  String get inviteButton;
+
+  /// No description provided for @inviteDeclined.
+  ///
+  /// In fr, this message translates to:
+  /// **'a refusé'**
+  String get inviteDeclined;
+
+  /// No description provided for @inviteGroup.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inviter le groupe'**
+  String get inviteGroup;
+
+  /// No description provided for @inviteNone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune invitation envoyée'**
+  String get inviteNone;
+
+  /// No description provided for @invitePending.
+  ///
+  /// In fr, this message translates to:
+  /// **'invité'**
+  String get invitePending;
+
+  /// No description provided for @invitePlayersIn.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{personne dans la salle} =1{1 joueur déjà dans la salle} other{{count} joueurs déjà dans la salle}}'**
+  String invitePlayersIn(int count);
+
+  /// No description provided for @invitePolicyAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'De tout le monde'**
+  String get invitePolicyAll;
+
+  /// No description provided for @invitePolicyKnown.
+  ///
+  /// In fr, this message translates to:
+  /// **'De mes joueurs et de mes groupes seulement'**
+  String get invitePolicyKnown;
+
+  /// No description provided for @invitePolicyNone.
+  ///
+  /// In fr, this message translates to:
+  /// **'De personne'**
+  String get invitePolicyNone;
+
+  /// No description provided for @invitePolicyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevoir les invitations'**
+  String get invitePolicyTitle;
+
+  /// No description provided for @inviteReceived.
+  ///
+  /// In fr, this message translates to:
+  /// **'{who} vous invite à un match'**
+  String inviteReceived(String who);
+
+  /// No description provided for @inviteSelected.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Inviter} =1{Inviter 1 joueur} other{Inviter {count} joueurs}}'**
+  String inviteSelected(int count);
+
+  /// No description provided for @inviteSent.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucun joueur invité} =1{1 joueur invité} other{{count} joueurs invités}}'**
+  String inviteSent(int count);
+
+  /// No description provided for @inviteSkipAlready.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} déjà là ou déjà invité(s)'**
+  String inviteSkipAlready(int count);
+
+  /// No description provided for @inviteSkipGroup.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} hors du groupe du tournoi'**
+  String inviteSkipGroup(int count);
+
+  /// No description provided for @inviteSkipLimit.
+  ///
+  /// In fr, this message translates to:
+  /// **'limite d’invitations atteinte pour cette heure'**
+  String get inviteSkipLimit;
+
+  /// No description provided for @inviteSkipRefused.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} n’accepte(nt) pas les invitations'**
+  String inviteSkipRefused(int count);
 
   /// No description provided for @libraryEmptyBody.
   ///
@@ -2060,6 +2396,12 @@ abstract class AppLocalizations {
   /// **'Valider'**
   String get signInVerify;
 
+  /// No description provided for @socialTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Joueurs et groupes'**
+  String get socialTitle;
+
   /// No description provided for @sourceAi.
   ///
   /// In fr, this message translates to:
@@ -2377,6 +2719,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Le tournoi est complet.'**
   String get tourFull;
+
+  /// No description provided for @tourGroupField.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réservé à un groupe'**
+  String get tourGroupField;
+
+  /// No description provided for @tourGroupFieldHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Seuls les membres du groupe pourront s’inscrire.'**
+  String get tourGroupFieldHint;
+
+  /// No description provided for @tourGroupNone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvert à tous'**
+  String get tourGroupNone;
+
+  /// No description provided for @tourGroupOnly.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réservé aux membres du groupe « {name} »'**
+  String tourGroupOnly(String name);
 
   /// No description provided for @tourHoursValue.
   ///
@@ -2791,6 +3157,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Votre duel'**
   String get tourYourDuel;
+
+  /// No description provided for @unblock.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer'**
+  String get unblock;
 
   /// No description provided for @updateAvailable.
   ///

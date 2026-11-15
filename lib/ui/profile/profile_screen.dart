@@ -8,6 +8,8 @@ import '../../online/online_providers.dart';
 import '../../providers.dart';
 import '../common.dart';
 import '../online/online_common.dart';
+import 'contacts_screen.dart';
+import 'groups_screen.dart';
 
 /// Onglet « Profil » : le joueur, ses crédits IA, les réglages de l'appareil, le compte.
 class ProfileScreen extends ConsumerWidget {
@@ -55,6 +57,23 @@ class ProfileScreen extends ConsumerWidget {
                     },
                   ),
                 ),
+              SectionTitle(l.socialTitle),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.people_outline),
+                title: Text(l.contactsTitle),
+                subtitle: Text(l.contactsHint),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => ContactsScreen.open(context),
+              ),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.groups_outlined),
+                title: Text(l.groupsTitle),
+                subtitle: Text(l.groupsHint),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => GroupsScreen.open(context),
+              ),
               SectionTitle(l.aiTitle),
               Card(
                 child: Padding(

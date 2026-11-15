@@ -68,6 +68,9 @@ void main() {
     expect(parseDocumentLink(Uri.parse('genieenherbe://join/DABC2345')), 'DABC2345');
     expect(parseDocumentLink(Uri.parse('https://x.ci/genie-en-herbe/rejoindre/AB12CD')), isNull);
     expect(parseGameLink(Uri.parse('https://x.ci/genie-en-herbe/rejoindre/DABC2345')).join, isNull);
+    expect(parseGroupLink(Uri.parse('https://x.ci/genie-en-herbe/rejoindre/gabc2345')), 'GABC2345');
+    expect(parseGroupLink(Uri.parse('https://x.ci/genie-en-herbe/rejoindre/DABC2345')), isNull);
+    expect(parseDocumentLink(Uri.parse('https://x.ci/genie-en-herbe/rejoindre/GABC2345')), isNull);
   });
 
   test('La version affichée est celle du pubspec', () {

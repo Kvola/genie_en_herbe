@@ -13,6 +13,7 @@ import '../../online/realtime.dart';
 import '../common.dart';
 import '../documents/page_reader_screen.dart';
 import 'online_common.dart';
+import 'invite_sheet.dart';
 
 /// Un match : salle d'attente, puis les questions à la main, puis les résultats.
 ///
@@ -236,6 +237,31 @@ class _LobbyView extends ConsumerWidget {
                     ],
                   ),
                 ),
+                if (m.kind == 'free' && (isCreator || me != null)) ...[
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.person_add_alt),
+                    label: Text(l.inviteButton),
+                    onPressed: () async {
+                      final choice = await InviteSheet.show(context, exclude: {for (final p in m.active) p.playerId});
+                      if (choice == null || !context.mounted) return;
+                      final r = await runOnline(context, () => ref.read(onlineServiceProvider)
+                          .inviteToMatch(m.id, playerIds: choice.playerIds, groupId: choice.groupId));
+                      if (r == null || !context.mounted) return;
+                      context.toast(inviteSummary(context, r.result));
+                      unawaited(controller.refresh());
+                    },
+                  ),
+                  for (final inv in m.invitations.where((i) => i.state == 'pending' || i.state == 'declined'))
+                    ListTile(
+                      dense: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                      leading: Icon(inv.state == 'pending' ? Icons.schedule_send : Icons.do_not_disturb_on_outlined, size: 20),
+                      title: Text(inv.pseudo),
+                      trailing: Text(inv.state == 'pending' ? l.invitePending : l.inviteDeclined,
+                          style: Theme.of(context).textTheme.bodySmall),
+                    ),
+                ],
                 if (!m.isTeam) ...[
                   SectionTitle('${l.lobbyPlayers} (${m.active.length}/${m.maxPlayers})'),
                   for (final p in m.active)

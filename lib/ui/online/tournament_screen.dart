@@ -11,6 +11,7 @@ import '../../online/realtime.dart';
 import '../../online/tournament_controller.dart';
 import '../common.dart';
 import 'match_screen.dart';
+import 'invite_sheet.dart';
 import '../documents/page_picker_screen.dart';
 import '../documents/page_reader_screen.dart';
 import 'online_common.dart';
@@ -174,6 +175,26 @@ class _TournamentScreenState extends ConsumerState<TournamentScreen> {
           title: l.tourCode,
           shareText: l.tourShareText(t.name, t.pagesLabel, t.code),
         ),
+        if (t.groupName != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(l.tourGroupOnly(t.groupName!), style: Theme.of(context).textTheme.bodySmall),
+          ),
+        if (organizer || me != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              icon: const Icon(Icons.person_add_alt),
+              label: Text(l.inviteButton),
+              onPressed: () async {
+                final choice = await InviteSheet.show(context);
+                if (choice == null || !context.mounted) return;
+                final r = await runOnline(context, () => ref.read(onlineServiceProvider)
+                    .inviteToTournament(t.id, playerIds: choice.playerIds, groupId: choice.groupId));
+                if (r != null && context.mounted) context.toast(inviteSummary(context, r));
+              },
+            ),
+          ),
         const SizedBox(height: 8),
         _myRegistration(context, t, me, busy),
         SectionTitle(t.isTeam ? l.tourTeams(t.entries.length, t.maxEntries) : l.tourPlayers(t.entries.length, t.maxEntries)),
