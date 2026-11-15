@@ -1,0 +1,1075 @@
+{
+  "@@locale": "fr",
+  "aiCodeLabel": "Code IA (GH-XXXX-XXXX)",
+  "aiCredits": "Crédits IA : {count}",
+  "@aiCredits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aiExplain": "Un lot = quelques pages (environ 9 000 caractères). Au-delà du quota gratuit, les crédits IA sont utilisés ; sans crédit, les questions sont tirées du texte sans IA.",
+  "aiFailures": "L’IA n’a pas réussi plusieurs fois aujourd’hui : questions tirées du texte sans IA.",
+  "aiFreeToday": "Gratuit aujourd’hui : {left} lot(s) sur {daily}",
+  "@aiFreeToday": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "daily": {
+        "type": "int"
+      }
+    }
+  },
+  "aiLanguage": "L’IA ne traite pas cette langue.",
+  "aiOff": "L’IA n’est pas disponible sur ce serveur.",
+  "aiQueued": "Questions sans IA prêtes. L’IA prépare de meilleures questions : la fiche se met à jour toute seule.",
+  "aiQueuedPartly": "L’IA prépare une partie des pages ; quota du jour atteint pour les autres (questions sans IA).",
+  "aiQuota": "Quota IA du jour atteint : les questions sont tirées du texte sans IA. Un code IA ajoute des crédits.",
+  "aiRedeem": "Saisir un code IA",
+  "aiRedeemed": "{count} crédit(s) IA ajouté(s).",
+  "@aiRedeemed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aiTitle": "Questions rédigées par l’IA",
+  "aiUnavailable": "IA indisponible pour l’instant : questions tirées du texte sans IA.",
+  "appTitle": "Génie en herbe",
+  "cancel": "Annuler",
+  "close": "Fermer",
+  "confirm": "Confirmer",
+  "copied": "Copié",
+  "copy": "Copier",
+  "createChangePages": "Changer les pages",
+  "createChoosePages": "Choisir les pages",
+  "createHandTime": "Temps pour répondre après avoir pris la main : {seconds} s",
+  "@createHandTime": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "createHostOnly": "Organiser sans jouer",
+  "createHostOnlyHint": "Vous lancez et projetez le match ; d’autres jouent (une classe, deux équipes…).",
+  "createMatchTitle": "Nouveau match",
+  "createMaxPlayers": "Joueurs au plus : {n}",
+  "@createMaxPlayers": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "createNoPages": "Aucune page choisie.",
+  "createNotEnough": "Pas assez de questions : ajoutez des pages, ou réduisez le nombre de questions.",
+  "createPages": "Pages au programme",
+  "createPublic": "Visible dans les matchs ouverts",
+  "createPublicHint": "Sinon, seuls ceux qui ont le code peuvent entrer.",
+  "createQuestionTime": "Temps par question : {seconds} s",
+  "@createQuestionTime": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "createQuestions": "Questions : {n}",
+  "@createQuestions": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "createSubmit": "Créer le match",
+  "createWaitQuestions": "L’IA prépare encore des questions : patientez un peu, ou réduisez le nombre de questions.",
+  "docAddShared": "Ajouter un document partagé",
+  "docAdded": "« {name} » ajouté à vos documents.",
+  "@docAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "docBy": "par {owner}",
+  "@docBy": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "docDelete": "Supprimer le document",
+  "docDeleteConfirm": "Le document, ses pages et ses questions seront effacés. Les matchs déjà joués gardent leurs questions.",
+  "docForget": "Retirer de mes documents",
+  "docFrom": "De",
+  "docImport": "Charger un document",
+  "docJustImported": "Document chargé ! Cochez les pages au programme, puis « Préparer les questions » ou « Match ».",
+  "docMatch": "Match",
+  "docNoPublic": "Aucun document public pour l’instant.",
+  "docPractice": "M’entraîner",
+  "docPrepare": "Préparer les questions",
+  "docPrivate": "Privé",
+  "docPrivateHint": "Vous seul le voyez.",
+  "docPublic": "Public",
+  "docPublicHint": "Tous les joueurs le trouvent dans les documents publics. Ses questions restent visibles de vous seul.",
+  "docPublicLibrary": "Documents publics",
+  "docRename": "Renommer",
+  "docSearch": "Rechercher un titre",
+  "docSelectAll": "Tout cocher",
+  "docSelectHint": "Cochez les pages au programme pour préparer leurs questions, créer un match ou un tournoi, ou vous entraîner.",
+  "docSelectNone": "Tout décocher",
+  "docSelectRange": "Choisir de… à…",
+  "docSelected": "{count, plural, =1{1 page choisie} other{{count} pages choisies}}",
+  "@docSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "docShare": "Partager",
+  "docShareCode": "Code de partage",
+  "docShareHint": "Dans Génie en herbe : Documents → menu → Ajouter un document partagé, puis saisir ce code.",
+  "docShareText": "Je partage le document « {name} » sur Génie en herbe. Code : {code}",
+  "@docShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "docShared": "Partagé par code",
+  "docSharedHint": "Ceux qui ont son code peuvent l’ajouter, le lire et jouer dessus.",
+  "docTo": "À",
+  "docTournament": "Tournoi",
+  "docUnits": "{count, plural, =1{1 {unit, select, slide{diapositive} sheet{feuille} part{partie} other{page}}} other{{count} {unit, select, slide{diapositives} sheet{feuilles} part{parties} other{pages}}}}",
+  "@docUnits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "docVisibility": "Visibilité",
+  "editorAddOption": "Ajouter une proposition",
+  "editorExplain": "Explication (facultative)",
+  "editorNeedAnswer": "Cochez une proposition remplie comme bonne réponse.",
+  "editorNeedOptions": "Il faut au moins deux propositions.",
+  "editorOption": "Proposition {n}",
+  "@editorOption": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "editorOptionsHint": "Cochez la bonne réponse.",
+  "editorPrompt": "Question",
+  "editorPromptTooShort": "La question est trop courte.",
+  "errBadCode": "Code incorrect ou expiré.",
+  "errBanned": "Votre compte joueur est suspendu.",
+  "errCorrupt": "Ce fichier est illisible ou abîmé.",
+  "errEmptyFile": "Ce fichier ne contient pas de texte.",
+  "errEncrypted": "Ce fichier est protégé par un mot de passe.",
+  "errFull": "C’est complet.",
+  "errHandTaken": "Trop tard : un autre joueur a pris la main.",
+  "errHost": "Vous organisez ce match sans y jouer.",
+  "errLegacyOffice": "Ancien format Office (.doc, .ppt, .xls) : enregistrez-le en .docx, .pptx, .xlsx ou PDF.",
+  "errLocked": "Vous ne pouvez plus répondre à cette question.",
+  "errNetwork": "Pas de connexion Internet.",
+  "errNoHand": "Vous n’avez plus la main.",
+  "errNoText": "Aucun texte lisible : un document scanné doit être lu par la reconnaissance de texte (photos de pages, sur Android).",
+  "errPages": "Choisissez des pages valables.",
+  "errQuestions": "Ces pages ne donnent pas assez de questions : ajoutez des pages, ou réduisez le nombre de questions.",
+  "errQuestionsPending": "Les questions de ces pages sont en préparation : réessayez dans une minute.",
+  "errRateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+  "errScanner": "Le scanner de documents n’est pas disponible sur ce téléphone.",
+  "errServer": "Le serveur ne répond pas correctement. Réessayez plus tard.",
+  "errServerBusy": "Trop de parties en cours en ce moment. Réessayez dans quelques minutes.",
+  "errTooLarge": "Ce fichier est trop volumineux (40 Mo au plus).",
+  "errTooLate": "Le temps est écoulé.",
+  "errUnknownCode": "Aucun match ni tournoi avec ce code.",
+  "errUnsupported": "Format non pris en charge.",
+  "eventDuelReady": "Tournoi : votre duel vous attend !",
+  "eventInvitation": "{captain} vous invite dans l’équipe « {team} »",
+  "@eventInvitation": {
+    "placeholders": {
+      "captain": {
+        "type": "String"
+      },
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "eventRematch": "Revanche proposée : code {code}",
+  "@eventRematch": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "eventRequest": "{pseudo} demande à entrer dans votre équipe",
+  "@eventRequest": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      }
+    }
+  },
+  "eventSee": "Voir",
+  "homeScreenBody": "Touchez Partager (le carré avec une flèche), puis « Sur l’écran d’accueil ». L’application s’ouvrira en plein écran et vos données seront mieux conservées.",
+  "homeScreenDismiss": "Compris",
+  "homeScreenTitle": "Ajoutez l’application à l’écran d’accueil",
+  "importBlankPage": "(page sans texte)",
+  "importChars": "{count} caractères",
+  "@importChars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importDocTitle": "Titre du document",
+  "importDuplicate": "Vous aviez déjà chargé ce document : le voici.",
+  "importEmptyPages": "{count} page(s) sans texte (pages blanches, images)",
+  "@importEmptyPages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importFile": "Choisir un fichier",
+  "importFileHint": "PDF, Word, PowerPoint, Excel, OpenDocument, EPUB, texte, HTML, RTF",
+  "importIntro": "Le texte est lu sur votre téléphone, page par page, puis envoyé au serveur. Le fichier lui-même ne quitte pas le téléphone.",
+  "importLang": "Langue du document",
+  "importLangAuto": "Reconnue automatiquement",
+  "importLangHint": "Les questions sont rédigées dans cette langue.",
+  "importMorePages": "… et {count} autre(s)",
+  "@importMorePages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importNeedTitle": "Donnez un titre au document.",
+  "importOther": "Choisir un autre document",
+  "importPartsHint": "Ce document n’a pas de pages : il est découpé en parties.",
+  "importPaste": "Coller un texte",
+  "importPasteHint": "Collez ici le texte du cours…",
+  "importPasteSub": "Découpé en parties d’environ 3 000 caractères.",
+  "importPrivacy": "Les documents sont privés par défaut. Vous pouvez les partager par un code, ou les rendre publics.",
+  "importReading": "Lecture du fichier…",
+  "importReadingPages": "Lecture des pages : {done} / {total}",
+  "@importReadingPages": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "importRecognizing": "Reconnaissance du texte : {done} / {total}",
+  "@importRecognizing": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "importScan": "Photographier des pages",
+  "importScanHint": "Un manuel ou un cahier : une photo par page, le texte est reconnu sur le téléphone.",
+  "importScanTitle": "Pages photographiées",
+  "importSend": "Envoyer",
+  "importSending": "Envoi du document…",
+  "importSendingPages": "Envoi : {done} / {total} pages",
+  "@importSendingPages": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "importTitle": "Charger un document",
+  "libraryEmptyBody": "Chargez un cours ou un manuel avec « Charger un document », ajoutez un document partagé par son code, ou parcourez les documents publics.",
+  "libraryEmptyTitle": "Votre bibliothèque est vide",
+  "libraryMine": "Mes documents",
+  "libraryShared": "Partagés avec moi",
+  "libraryTitle": "Mes documents",
+  "loadError": "Le contenu n’a pas pu être chargé.",
+  "lobbyCancelled": "Ce match a été annulé.",
+  "lobbyCode": "Code du match",
+  "lobbyCreator": "créateur",
+  "lobbyHostedBy": "Organisé par {pseudo}, qui ne joue pas",
+  "@lobbyHostedBy": {
+    "placeholders": {
+      "pseudo": {
+        "type": "String"
+      }
+    }
+  },
+  "lobbyKick": "Retirer du match",
+  "lobbyLeave": "Quitter",
+  "lobbyLeaveConfirm": "Quitter ce match ?",
+  "lobbyLeaveRunning": "Si vous quittez un match en cours, vous l’abandonnez.",
+  "lobbyNeedPlayers": "Il faut au moins 2 joueurs.",
+  "lobbyNoTeam": "Sans équipe",
+  "lobbyNoTeamHint": "Les joueurs sans équipe ne jouent pas : demandez à entrer dans une équipe, ou créez-la.",
+  "lobbyPlayers": "Joueurs",
+  "lobbyRevise": "Réviser les pages",
+  "lobbySettings": "{n} questions · {seconds} s par question · main : {hand} s",
+  "@lobbySettings": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      },
+      "hand": {
+        "type": "String"
+      }
+    }
+  },
+  "lobbyShareHint": "Les autres joueurs saisissent ce code dans Jouer → Rejoindre, ou scannent le QR code avec l’appareil photo.",
+  "lobbyShareText": "Rejoins-moi pour un match de Génie en herbe ({passages}) ! Code : {code} {link}",
+  "@lobbyShareText": {
+    "placeholders": {
+      "passages": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "lobbyShareWhatsApp": "Inviter par WhatsApp",
+  "lobbyStart": "Lancer le match",
+  "lobbyTitle": "Salle d’attente",
+  "lobbyWaitCreator": "En attente du lancement par {name}…",
+  "@lobbyWaitCreator": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "navDocuments": "Documents",
+  "navPlay": "Jouer",
+  "navProfile": "Profil",
+  "onlineAccountHint": "Il faut un numéro de téléphone (code reçu par WhatsApp) et un pseudo.",
+  "onlineBecomePlayer": "Devenir joueur",
+  "onlineBy": "par {name}",
+  "@onlineBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "onlineCreateMatch": "Créer un match",
+  "onlineCreateTournament": "Créer un tournoi",
+  "onlineCurrentMatch": "Vous avez un match en cours",
+  "onlineCurrentTournament": "Vous participez au tournoi « {name} »",
+  "@onlineCurrentTournament": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "onlineHistory": "Mes matchs",
+  "onlineIntro": "Affrontez d’autres joueurs, seul ou en équipe, sur les pages de vos documents. Le premier qui prend la main répond ; une bonne réponse rapporte 10 points, une erreur en coûte 5.",
+  "onlineInvitations": "Invitations",
+  "onlineJoin": "Rejoindre",
+  "onlineJoinHint": "Code à 6 caractères",
+  "onlineJoinTitle": "Rejoindre avec un code",
+  "onlineModeSolo": "Individuel",
+  "onlineModeTeam": "Par équipes",
+  "onlineMyTournaments": "Mes tournois",
+  "onlineNoHistory": "Vos matchs terminés s’afficheront ici.",
+  "onlineNoOpenMatch": "Aucun match ouvert pour l’instant. Créez-en un et partagez son code.",
+  "onlineOpenMatches": "Matchs ouverts",
+  "onlineOpenTournaments": "Tournois ouverts",
+  "onlineOptional": "Un compte est nécessaire pour charger des documents et jouer.",
+  "onlinePlayers": "{players}/{max} joueurs",
+  "@onlinePlayers": {
+    "placeholders": {
+      "players": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "onlineProjection": "Écran de projection",
+  "onlineProjectionHint": "Affichez un match en grand (vidéoprojecteur, télévision), sans compte.",
+  "onlineRealtimeOff": "Connexion lente : l’affichage peut avoir un peu de retard.",
+  "onlineResume": "Reprendre",
+  "onlineStats": "{played, plural, =0{Aucun match} =1{1 match} other{{played} matchs}} · {won, plural, =0{aucun gagné} =1{1 gagné} other{{won} gagnés}}",
+  "@onlineStats": {
+    "placeholders": {
+      "played": {
+        "type": "int"
+      },
+      "won": {
+        "type": "int"
+      }
+    }
+  },
+  "onlineTitle": "Jouer",
+  "pageAiDone": "IA ✓",
+  "pageAiFailed": "IA indisponible",
+  "pageAiRunning": "IA en cours…",
+  "pageEmpty": "Page sans texte",
+  "pageNext": "Page suivante",
+  "pageOfflineCopy": "Copie gardée sur le téléphone (pas de réseau).",
+  "pagePrevious": "Page précédente",
+  "pageRead": "Lire la page",
+  "pageValidated": "{count} validée(s)",
+  "@pageValidated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pagesAiPending": "{ready} question(s) prête(s) ; l’IA prépare encore {pages} page(s)…",
+  "@pagesAiPending": {
+    "placeholders": {
+      "ready": {
+        "type": "int"
+      },
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
+  "pagesClear": "Retirer ces pages",
+  "pagesReady": "{count, plural, =0{aucune question prête} =1{1 question prête} other{{count} questions prêtes}}",
+  "@pagesReady": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pickerConfirm": "{count, plural, =0{Valider} =1{Valider 1 page} other{Valider {count} pages}}",
+  "@pickerConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pickerHint": "Choisissez un document, puis cochez ses pages. Leurs questions sont préparées aussitôt.",
+  "pickerTitle": "Choisir les pages",
+  "playAnswerWas": "Réponse : {answer}",
+  "@playAnswerWas": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "playAnsweredWrong": "{name} s’est trompé : −5",
+  "@playAnsweredWrong": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playBuzz": "Je réponds !",
+  "playCountdown": "Prêts ?",
+  "playFromText": "Tiré du texte",
+  "playHandLost": "{name} a laissé filer la main : −5",
+  "@playHandLost": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playHandOf": "{name} a la main",
+  "@playHandOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playLeft": "a quitté",
+  "playLocked": "Vous ne pouvez plus répondre à cette question",
+  "playLockedTeam": "Votre équipe ne peut plus répondre à cette question",
+  "playNobody": "Personne n’a trouvé",
+  "playPaused": "Chrono en pause",
+  "playPoints": "{points} pts",
+  "@playPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "playQuestion": "Question {index} sur {total}",
+  "@playQuestion": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "playScores": "Scores",
+  "playSpectator": "Vous regardez ce match",
+  "playTiebreak": "Question décisive : la première bonne réponse l’emporte",
+  "playWonBy": "{name} a trouvé",
+  "@playWonBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playYourHand": "À vous ! Choisissez la réponse",
+  "practiceAgain": "D’autres questions",
+  "practiceFalse": "Faux",
+  "practiceFinish": "Voir le résultat",
+  "practiceLanguage": "L’entraînement sur le téléphone ne sait faire des questions qu’en français et en anglais.",
+  "practiceNext": "Question suivante",
+  "practiceNoPages": "Ces pages ne sont pas disponibles sans réseau : ouvrez-les une fois en ligne.",
+  "practiceRight": "Bonne réponse !",
+  "practiceScore": "{score} bonne(s) réponse(s) sur {total}",
+  "@practiceScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceThesePages": "M’entraîner sur ces pages",
+  "practiceThisPage": "M’entraîner sur cette page",
+  "practiceTitle": "Entraînement",
+  "practiceTooShort": "Ces pages sont trop courtes pour un entraînement : choisissez-en davantage.",
+  "practiceTrue": "Vrai",
+  "practiceWrong": "Ce n’est pas ça.",
+  "profileAccount": "Compte",
+  "profileDelete": "Supprimer mon compte joueur",
+  "profileDeleteConfirm": "Votre pseudo, votre historique et vos documents seront effacés, et vous quitterez la partie en cours.",
+  "profileDeleted": "Compte joueur supprimé",
+  "profileRename": "Changer de pseudo",
+  "profileSignOut": "Se déconnecter",
+  "profileTitle": "Profil",
+  "profileTournamentsWon": "{count, plural, =0{Aucun tournoi gagné} =1{1 tournoi gagné} other{{count} tournois gagnés}}",
+  "@profileTournamentsWon": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "projectionCodePrompt": "Code du match à afficher",
+  "projectionShow": "Afficher",
+  "projectionWaiting": "En attente des joueurs — code {code}",
+  "@projectionWaiting": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "pseudoHint": "3 à 20 caractères, visible par les autres joueurs",
+  "pseudoLabel": "Pseudo",
+  "pseudoSave": "C’est parti",
+  "pseudoTitle": "Choisissez votre pseudo",
+  "questionsCount": "{count, plural, =1{1 question} other{{count} questions}}",
+  "@questionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "questionsPrepared": "Questions prêtes.",
+  "report": "Signaler ce pseudo",
+  "reportReason": "Pourquoi ? (facultatif)",
+  "reportSent": "Signalement envoyé. Merci.",
+  "resultAbandon": "Match arrêté : un camp a quitté la partie.",
+  "resultBack": "Retour",
+  "resultDraw": "Égalité",
+  "resultFirst": "1ᵉʳ",
+  "resultIdle": "Match clos faute d’activité.",
+  "resultRank": "{rank}ᵉ",
+  "@resultRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "resultReadPage": "Relire la page",
+  "resultRematch": "Revanche",
+  "resultRematchSent": "Nouveau match créé : les autres joueurs reçoivent le code.",
+  "resultReview": "Revoir les questions",
+  "resultTiebreak": "Départagé par une question décisive.",
+  "resultTiebreakRule": "Égalité parfaite : départagé au règlement (moins d’erreurs, puis rapidité).",
+  "resultTitle": "Résultats",
+  "resultWinner": "{name} gagne !",
+  "@resultWinner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "resultYouWin": "Vous avez gagné !",
+  "retry": "Réessayer",
+  "reviewAdd": "Ajouter une question",
+  "reviewDelete": "Supprimer la question",
+  "reviewEdit": "Corriger",
+  "reviewHint": "Les questions validées passent en premier dans les matchs.",
+  "reviewNone": "Pas encore de question pour cette page.",
+  "reviewPlayed": "posée {count} fois",
+  "@reviewPlayed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewProposed": "À relire",
+  "reviewRegenerate": "Régénérer",
+  "reviewRegenerateAi": "Régénérer avec l’IA",
+  "reviewRegenerateHint": "Les questions non validées de cette page sont remplacées par de nouvelles.",
+  "reviewRegenerateOffline": "Régénérer sans IA",
+  "reviewTitle": "Relire les questions",
+  "reviewValidateAll": "Tout valider",
+  "reviewValidated": "Validée",
+  "save": "Enregistrer",
+  "scanCameraDenied": "L’accès à la caméra a été refusé. Autorisez-le dans les réglages du téléphone, ou saisissez le code.",
+  "scanCameraUnavailable": "La caméra n’est pas disponible. Saisissez le code de la partie.",
+  "scanFromImage": "Choisir une image",
+  "scanHint": "Visez le QR code affiché dans la salle d’attente du match ou du tournoi.",
+  "scanNoQrInImage": "Aucun QR code de partie dans cette image.",
+  "scanNotAGame": "Ce QR code n’est pas celui d’une partie de Génie en herbe.",
+  "scanQr": "Scanner le QR code",
+  "scanTorch": "Lampe",
+  "scanTypeCode": "Saisir le code",
+  "settingsDark": "Sombre",
+  "settingsGuide": "Guide d’utilisation",
+  "settingsLanguage": "Langue",
+  "settingsLight": "Clair",
+  "settingsSystem": "Comme le téléphone",
+  "settingsTheme": "Thème",
+  "settingsTitle": "Réglages",
+  "settingsVersion": "Version {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "share": "Partager",
+  "signInChangeNumber": "Changer de numéro",
+  "signInCode": "Code reçu",
+  "signInCodeSent": "Code envoyé au {phone}",
+  "@signInCodeSent": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "signInCountry": "Pays",
+  "signInPhone": "Votre numéro de téléphone",
+  "signInPrivacy": "Votre numéro sert seulement à protéger votre compte. Les autres joueurs ne voient que votre pseudo.",
+  "signInResend": "Renvoyer le code",
+  "signInSendCode": "Recevoir le code par WhatsApp",
+  "signInTitle": "Devenir joueur",
+  "signInVerify": "Valider",
+  "sourceAi": "IA",
+  "sourceManual": "Écrite par vous",
+  "sourceOffline": "Tirée du texte",
+  "teamAccept": "Accepter",
+  "teamAskJoin": "Demander à entrer",
+  "teamCaptain": "capitaine",
+  "teamCreate": "Créer une équipe",
+  "teamDecline": "Refuser",
+  "teamInvitation": "{captain} vous invite dans l’équipe « {team} »",
+  "@teamInvitation": {
+    "placeholders": {
+      "captain": {
+        "type": "String"
+      },
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "teamInvite": "Inviter un joueur",
+  "teamInviteBusy": "déjà en partie",
+  "teamInviteSearch": "Pseudo du joueur",
+  "teamInvited": "invité",
+  "teamLeave": "Quitter l’équipe",
+  "teamName": "Nom de l’équipe",
+  "teamRemove": "Retirer",
+  "teamRename": "Renommer",
+  "teamRequested": "demande à entrer",
+  "teamSizeHint": "De {min} à {max} joueurs par équipe.",
+  "@teamSizeHint": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "textLarger": "Texte plus grand",
+  "textSmaller": "Texte plus petit",
+  "tourAbandon": "Abandonner le tournoi",
+  "tourAbandonBody": "Votre duel en cours ou à venir sera perdu.",
+  "tourAbandonTeamBody": "Vous quittez votre équipe ; elle continue sans vous.",
+  "tourAgainst": "Contre {name}",
+  "@tourAgainst": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tourBracket": "Tableau",
+  "tourBye": "Exempt",
+  "tourByeWin": "Qualifié d’office",
+  "tourCancel": "Annuler le tournoi",
+  "tourCancelBody": "Tous les participants seront prévenus. C’est définitif.",
+  "tourCancelConfirm": "Annuler ce tournoi ?",
+  "tourCancelled": "Ce tournoi a été annulé.",
+  "tourCode": "Code du tournoi",
+  "tourCreateSubmit": "Créer le tournoi",
+  "tourCreateTitle": "Nouveau tournoi",
+  "tourDeadlinePassed": "Délai écoulé, résultat en cours…",
+  "tourDoubleForfeit": "Double forfait",
+  "tourDuelLive": "En cours",
+  "tourDuelPending": "À venir",
+  "tourDuelPlaying": "Votre duel est en cours",
+  "tourDuelReadyWait": "En attente des joueurs",
+  "tourEliminated": "Vous êtes éliminé. Merci d’avoir joué !",
+  "tourEliminatedAt": "Vous êtes éliminé au tour {round}. Merci d’avoir joué !",
+  "@tourEliminatedAt": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "tourEliminatedTag": "éliminé",
+  "tourEntriesRange": "Participants : de {min} à {max}",
+  "@tourEntriesRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tourEntriesTeamHint": "Une équipe compte pour un participant.",
+  "tourFinal": "Finale",
+  "tourForfeitDelay": "Délai pour confirmer « Prêt »",
+  "tourForfeitHint": "Quand un duel s’ouvre, chaque camp a ce délai pour se déclarer prêt. Sinon, il perd par forfait.",
+  "tourForfeitIn": "Forfait dans {time}",
+  "@tourForfeitIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tourForfeitResult": "Forfait",
+  "tourFormat": "Formule",
+  "tourFull": "Le tournoi est complet.",
+  "tourHoursValue": "{n, plural, =1{1 heure} other{{n} heures}}",
+  "@tourHoursValue": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tourJoinDuel": "Rejoindre le duel",
+  "tourMinutesValue": "{minutes, plural, =1{1 minute} other{{minutes} minutes}}",
+  "@tourMinutesValue": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tourModeSolo": "Entre joueurs",
+  "tourModeSoloHint": "Chaque joueur s’inscrit seul ; les duels opposent deux joueurs.",
+  "tourModeTeam": "Entre équipes",
+  "tourModeTeamHint": "Les joueurs forment des équipes ; les duels opposent deux équipes.",
+  "tourName": "Nom du tournoi",
+  "tourNameHint": "Par ex. : Tournoi des jeunes — Évangile de Jean",
+  "tourNameTooShort": "3 caractères au moins",
+  "tourNeedEntries": "Il faut au moins {min} participants pour lancer (inscrits : {count}).",
+  "@tourNeedEntries": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tourNeedPages": "Choisissez les pages au programme.",
+  "tourNoEntries": "Personne n’est encore inscrit. Partagez le code !",
+  "tourNoWinner": "Tournoi terminé sans vainqueur.",
+  "tourOpponentReady": "{name} est prêt",
+  "@tourOpponentReady": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tourOpponentWaiting": "{name} n’a pas encore confirmé",
+  "@tourOpponentWaiting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tourOrganize": "Organisation",
+  "tourOrganizedBy": "Organisé par {name}",
+  "@tourOrganizedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tourOrganizer": "Organisateur",
+  "tourPlay": "Je joue aussi",
+  "tourPlaySoloHint": "Vous êtes inscrit d’office. Sinon, vous organisez seulement.",
+  "tourPlayTeamHint": "Vous créez votre équipe et en êtes le capitaine.",
+  "tourPlayers": "Joueurs inscrits : {count}/{max}",
+  "@tourPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tourPublic": "Visible dans les tournois ouverts",
+  "tourPublicHint": "Sinon, seuls ceux qui ont le code peuvent s’inscrire.",
+  "tourQuarterFinals": "Quarts de finale",
+  "tourQuestionsPerDuel": "Questions par duel : {n}",
+  "@tourQuestionsPerDuel": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tourReady": "Prêt !",
+  "tourReadyHint": "Le duel commence dès que les deux camps sont prêts.",
+  "tourRegister": "M’inscrire",
+  "tourRegistered": "Vous êtes inscrit. Le tournoi commencera quand l’organisateur le lancera.",
+  "tourRound": "Tour {round}",
+  "@tourRound": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "tourRoundDefault": "Pages du tournoi",
+  "tourRoundPages": "Pages par tour",
+  "tourRoundPagesHint": "Par défaut, chaque tour porte sur les pages du tournoi. Vous pouvez en choisir d’autres pour un tour (par exemple, la finale sur tout le programme).",
+  "tourRoundReset": "Revenir aux pages du tournoi",
+  "tourRoundStarted": "Ce tour a commencé",
+  "tourRules": "Règlement",
+  "tourRulesDuel": "{n} questions par duel · {seconds} s par question",
+  "@tourRulesDuel": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "tourRulesElimination": "Élimination directe : le perdant de chaque duel est éliminé.",
+  "tourRulesEntries": "De {min} à {max} participants",
+  "@tourRulesEntries": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tourRulesForfeit": "« Prêt » à confirmer dans les {minutes} min, sinon forfait",
+  "@tourRulesForfeit": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tourRulesHand": "Après avoir pris la main : {seconds} s pour répondre",
+  "@tourRulesHand": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "tourSaved": "Pages enregistrées",
+  "tourSemiFinals": "Demi-finales",
+  "tourShareText": "Inscris-toi au tournoi « {name} » de Génie en herbe ({passages}) ! Code : {code}",
+  "@tourShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "passages": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "tourSpectator": "Vous suivez ce tournoi.",
+  "tourStart": "Lancer le tournoi",
+  "tourStartBody": "Les inscriptions seront closes et le tableau tiré au sort.",
+  "tourStartBodyTeam": "Les inscriptions seront closes et le tableau tiré au sort. Les équipes de moins de {min} joueurs ne seront pas retenues.",
+  "@tourStartBodyTeam": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "tourStartConfirm": "Lancer le tournoi ?",
+  "tourStateCancelled": "Annulé",
+  "tourStateFinished": "Terminé",
+  "tourStateRegistration": "Inscriptions ouvertes",
+  "tourStateRunning": "En cours",
+  "tourTbd": "À déterminer",
+  "tourTeamHint": "Créez votre équipe et invitez vos coéquipiers, ou demandez à entrer dans une équipe ci-dessous.",
+  "tourTeamIncomplete": "Équipe incomplète : il faut {min} joueurs au moins, sinon elle ne sera pas retenue au lancement.",
+  "@tourTeamIncomplete": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "tourTeamReady": "Votre équipe est prête",
+  "tourTeams": "Équipes inscrites : {count}/{max}",
+  "@tourTeams": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tourTitle": "Tournoi",
+  "tourUnregister": "Me désinscrire",
+  "tourUnregisterConfirm": "Vous désinscrire de ce tournoi ?",
+  "tourWaitingNext": "Qualifié ! En attente de votre prochain adversaire.",
+  "tourWinner": "{name} remporte le tournoi !",
+  "@tourWinner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tourYou": "vous",
+  "tourYouReady": "Vous êtes prêt",
+  "tourYouWon": "Vous avez gagné le tournoi !",
+  "tourYourDuel": "Votre duel",
+  "updateAvailable": "Version {version} disponible",
+  "@updateAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateDownload": "Télécharger",
+  "updateLater": "Plus tard",
+  "updateRequired": "Mise à jour obligatoire : version {version}",
+  "@updateRequired": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateRequiredHint": "Cette version n’est plus prise en charge : installez la nouvelle pour continuer.",
+  "webInstallAction": "Installer",
+  "webInstallBody": "Plus fluide au quotidien, et vos données ne dépendent plus du navigateur.",
+  "webInstallTitle": "Installez l’application Android",
+  "welcomeSignIn": "Se connecter",
+  "welcomeStep1": "Chargez un document",
+  "welcomeStep1Body": "Un cours, un manuel, une présentation ou un tableau : PDF, Word, PowerPoint, Excel, OpenDocument, texte, ou des photos de pages.",
+  "welcomeStep2": "Choisissez les pages",
+  "welcomeStep2Body": "Les pages au programme : les questions sont préparées pour elles, par l’IA ou tirées du texte.",
+  "welcomeStep3": "Jouez à plusieurs",
+  "welcomeStep3Body": "Matchs, équipes et tournois : le premier qui prend la main répond. Chaque réponse renvoie à la page.",
+  "welcomeTagline": "Des concours de questions sur vos cours et vos documents."
+}
