@@ -1,5 +1,9 @@
 # Journal
 
+## 1.3.1 (build 7) — 15 novembre 2026
+
+- **Mises à jour** : l'application se déclare au serveur par un identifiant tiré au hasard à l'installation (rien sur la personne ni le téléphone ; le serveur n'en garde qu'une empreinte), pour compter les installations actives et savoir quelles versions tournent encore avant d'en rendre une obligatoire.
+
 ## 1.3.0 (build 6) — 15 novembre 2026
 
 - **Tournois programmés** : jour et heure du début choisis à la création ; inscription à l'avance sans être bloqué ailleurs ; rappels la veille, 10 minutes avant et à l'heure ; heure modifiable par l'organisateur ; dans « Matchs programmés » ; date affichée dans les tournois ouverts.

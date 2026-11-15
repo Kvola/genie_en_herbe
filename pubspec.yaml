@@ -2,7 +2,7 @@ name: genie_en_herbe
 description: "Génie en herbe — des concours de questions sur vos documents."
 publish_to: 'none'
 
-version: 1.3.0+6
+version: 1.3.1+7
 
 environment:
   sdk: ^3.13.7
