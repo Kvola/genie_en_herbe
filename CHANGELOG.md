@@ -1,5 +1,9 @@
 # Journal
 
+## 1.0.2 (build 3) — 15 novembre 2026
+
+- Français : « 0 … » au lieu de « 1 … » quand un nombre vaut zéro (pluriels).
+
 ## 1.0.1
 
 - Version web installable (PWA) : /apps/genie-en-herbe/web/, sur téléphone ou ordinateur.
