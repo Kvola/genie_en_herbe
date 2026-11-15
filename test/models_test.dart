@@ -75,3 +75,4 @@ void main() {
     expect(RegExp(r'^version: ([\d.]+)\+', multiLine: true).firstMatch(pubspec)!.group(1), appVersion);
   });
 }
+

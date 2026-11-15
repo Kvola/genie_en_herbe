@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme.dart';
+import '../../online/api.dart';
 import '../../online/doc_models.dart';
 import '../../online/online_providers.dart';
 import '../../providers.dart';
@@ -11,6 +12,8 @@ import '../common.dart';
 import '../online/online_common.dart';
 import 'document_screen.dart';
 import 'import_screen.dart';
+import 'page_reader_screen.dart';
+import 'practice_screen.dart';
 
 /// Icône d'un document d'après son format.
 IconData documentIcon(DocumentSummary d) => switch (d.fileKind) {
@@ -26,11 +29,14 @@ String documentSubtitle(BuildContext context, DocumentSummary d, {bool owner = f
   final l = context.l10n;
   return [
     l.docUnits(d.pageCount, d.unit),
-    if (owner) switch (d.visibility) {
-      'public' => l.docPublic,
-      'shared' => l.docShared,
-      _ => l.docPrivate,
-    } else l.docBy(d.owner),
+    if (owner)
+      switch (d.visibility) {
+        'public' => l.docPublic,
+        'shared' => l.docShared,
+        _ => l.docPrivate,
+      }
+    else
+      l.docBy(d.owner),
   ].join(' · ');
 }
 
@@ -67,9 +73,7 @@ class LibraryScreen extends ConsumerWidget {
             onSelected: (v) {
               if (v == 'code') addSharedDocument(context, ref);
             },
-            itemBuilder: (_) => [
-              PopupMenuItem(value: 'code', child: Text(l.docAddShared)),
-            ],
+            itemBuilder: (_) => [PopupMenuItem(value: 'code', child: Text(l.docAddShared))],
           ),
         ],
       ),
@@ -80,27 +84,31 @@ class LibraryScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         top: false,
-        child: AsyncBody(
-          value: library,
-          onRetry: () => ref.invalidate(libraryProvider),
-          builder: (data) => RefreshIndicator(
-            onRefresh: () async => ref.invalidate(libraryProvider),
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
-              children: [
-                if (data.mine.isEmpty && data.shared.isEmpty) const _EmptyLibrary(),
-                if (data.mine.isNotEmpty) ...[
-                  SectionTitle(l.libraryMine),
-                  for (final d in data.mine) _DocTile(doc: d, owner: true),
-                ],
-                if (data.shared.isNotEmpty) ...[
-                  SectionTitle(l.libraryShared),
-                  for (final d in data.shared) _DocTile(doc: d),
-                ],
-              ],
-            ),
-          ),
-        ),
+        // Riverpod relance seul un chargement échoué : pendant ces essais l'état est « en cours »
+        // mais garde l'erreur. Hors ligne, on montre tout de suite les pages gardées.
+        child: !library.hasValue && library.error is ApiException && (library.error as ApiException).isNetwork
+            ? _OfflineLibrary(onRetry: () => ref.invalidate(libraryProvider))
+            : AsyncBody(
+                value: library,
+                onRetry: () => ref.invalidate(libraryProvider),
+                builder: (data) => RefreshIndicator(
+                  onRefresh: () async => ref.invalidate(libraryProvider),
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+                    children: [
+                      if (data.mine.isEmpty && data.shared.isEmpty) const _EmptyLibrary(),
+                      if (data.mine.isNotEmpty) ...[
+                        SectionTitle(l.libraryMine),
+                        for (final d in data.mine) _DocTile(doc: d, owner: true),
+                      ],
+                      if (data.shared.isNotEmpty) ...[
+                        SectionTitle(l.libraryShared),
+                        for (final d in data.shared) _DocTile(doc: d),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -205,7 +213,9 @@ class _PublicLibraryScreenState extends ConsumerState<PublicLibraryScreen> {
                 value: _docs,
                 onRetry: () => _load(_q),
                 builder: (docs) => docs.isEmpty
-                    ? Center(child: Padding(padding: const EdgeInsets.all(24), child: Text(l.docNoPublic)))
+                    ? Center(
+                        child: Padding(padding: const EdgeInsets.all(24), child: Text(l.docNoPublic)),
+                      )
                     : ListView(
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
                         children: [for (final d in docs) _DocTile(doc: d)],
@@ -215,6 +225,69 @@ class _PublicLibraryScreenState extends ConsumerState<PublicLibraryScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Hors ligne : les pages déjà lues, gardées sur cet appareil, pour les relire et s'entraîner.
+class _OfflineLibrary extends ConsumerWidget {
+  const _OfflineLibrary({required this.onRetry});
+
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    return FutureBuilder<List<PageText>>(
+      future: ref.read(pageCacheProvider).all(),
+      builder: (context, snap) {
+        final pages = snap.data ?? const <PageText>[];
+        final byDoc = <int, List<PageText>>{};
+        for (final p in pages) {
+          byDoc.putIfAbsent(p.documentId, () => []).add(p);
+        }
+        return ListView(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+          children: [
+            Card(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              child: ListTile(
+                leading: const Icon(Icons.wifi_off),
+                title: Text(l.offlineTitle),
+                subtitle: Text(l.offlineHint),
+                trailing: TextButton(onPressed: onRetry, child: Text(l.retry)),
+              ),
+            ),
+            if (snap.hasData && pages.isEmpty)
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(l.offlineNoPages, textAlign: TextAlign.center),
+              ),
+            for (final entry in byDoc.entries) ...[
+              SectionTitle(entry.value.first.document),
+              for (final p in (entry.value..sort((a, b) => a.number.compareTo(b.number))))
+                Card(
+                  margin: const EdgeInsets.symmetric(vertical: 3),
+                  child: ListTile(
+                    title: Text(p.label),
+                    trailing: IconButton(
+                      tooltip: l.practiceThisPage,
+                      icon: const Icon(Icons.school_outlined),
+                      onPressed: () => PracticeScreen.open(context, [
+                        PageRef(p.id, p.label, p.documentId, p.document),
+                      ], lang: p.lang),
+                    ),
+                    onTap: () => PageReaderScreen.open(
+                      context,
+                      pages: [for (final x in entry.value) PageRef(x.id, x.label, x.documentId, x.document)],
+                      initial: entry.value.indexOf(p),
+                    ),
+                  ),
+                ),
+            ],
+          ],
+        );
+      },
     );
   }
 }

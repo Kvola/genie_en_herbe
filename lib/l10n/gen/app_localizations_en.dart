@@ -228,6 +228,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$count pages selected',
       one: '1 page selected',
+      zero: 'no page selected',
     );
     return '$_temp0';
   }
@@ -279,6 +280,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$count $_temp0',
       one: '1 $_temp1',
+      zero: 'no pages',
     );
     return '$_temp2';
   }
@@ -627,6 +629,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navProfile => 'Profile';
 
   @override
+  String get offlineHint =>
+      'Pages you have already read stay available here: read them again and practise.';
+
+  @override
+  String get offlineNoPages =>
+      'No pages kept on this device yet: open some pages once while online.';
+
+  @override
+  String get offlineTitle => 'No connection';
+
+  @override
   String get onlineAccountHint =>
       'You need a phone number (code sent by WhatsApp) and a nickname.';
 
@@ -754,7 +767,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pageNext => 'Next page';
 
   @override
-  String get pageOfflineCopy => 'Copy kept on the phone (no network).';
+  String get pageOfflineCopy => 'Copy kept on this device (no network).';
 
   @override
   String get pagePrevious => 'Previous page';
@@ -988,6 +1001,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$count questions',
       one: '1 question',
+      zero: 'no questions',
     );
     return '$_temp0';
   }

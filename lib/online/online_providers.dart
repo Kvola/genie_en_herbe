@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'api.dart';
 
 import 'models.dart';
 import 'push.dart';
@@ -20,14 +24,54 @@ final onlineServiceProvider = Provider<OnlineService>((ref) {
 final onlineMeProvider = AsyncNotifierProvider<OnlineMeNotifier, OnlineMe?>(OnlineMeNotifier.new);
 
 class OnlineMeNotifier extends AsyncNotifier<OnlineMe?> {
+  static const _cacheKey = 'online_me_cache';
+
   @override
   Future<OnlineMe?> build() async {
     final service = ref.watch(onlineServiceProvider);
-    service.onSignedOut = () => state = const AsyncData(null);
-    return service.me();
+    service.onSignedOut = () {
+      state = const AsyncData(null);
+      unawaited(_save(null));
+    };
+    try {
+      final me = await service.me();
+      unawaited(_save(me));
+      return me;
+    } on ApiException catch (e) {
+      // Pas de réseau, mais une session existe : on entre avec le dernier profil connu
+      // (pages gardées, entraînement) ; tout se met à jour au retour du réseau.
+      if (e.isNetwork && await service.hasSession()) {
+        final cached = await _load();
+        if (cached != null) return cached;
+      }
+      rethrow;
+    }
   }
 
-  void set(OnlineMe? me) => state = AsyncData(me);
+  Future<void> _save(OnlineMe? me) async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      if (me == null) {
+        await p.remove(_cacheKey);
+      } else {
+        await p.setString(_cacheKey, jsonEncode(me.json));
+      }
+    } catch (_) {}
+  }
+
+  Future<OnlineMe?> _load() async {
+    try {
+      final raw = (await SharedPreferences.getInstance()).getString(_cacheKey);
+      return raw == null ? null : OnlineMe((jsonDecode(raw) as Map).cast<String, dynamic>());
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void set(OnlineMe? me) {
+    state = AsyncData(me);
+    unawaited(_save(me));
+  }
 
   Future<void> refresh() async {
     final service = ref.read(onlineServiceProvider);

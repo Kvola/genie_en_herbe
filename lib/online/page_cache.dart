@@ -40,6 +40,22 @@ class PageCache {
     }
   }
 
+  /// Toutes les pages gardées, les plus récemment lues d'abord.
+  Future<List<PageText>> all() async {
+    try {
+      final p = await _prefs;
+      final ids = (p.getStringList(_index) ?? const <String>[]).reversed;
+      final out = <PageText>[];
+      for (final id in ids) {
+        final raw = p.getString(_key(int.parse(id)));
+        if (raw != null) out.add(PageText((jsonDecode(raw) as Map).cast<String, dynamic>()));
+      }
+      return out;
+    } catch (_) {
+      return const [];
+    }
+  }
+
   /// Le texte d'une page : du serveur (et gardé), sinon de la copie du téléphone.
   /// Rend aussi si la page vient de la copie (pas de réseau).
   Future<({PageText page, bool offline})> load(

@@ -461,7 +461,7 @@ abstract class AppLocalizations {
   /// No description provided for @docSelected.
   ///
   /// In fr, this message translates to:
-  /// **'{count, plural, =1{1 page choisie} other{{count} pages choisies}}'**
+  /// **'{count, plural, =0{aucune page choisie} =1{1 page choisie} other{{count} pages choisies}}'**
   String docSelected(int count);
 
   /// No description provided for @docShare.
@@ -515,7 +515,7 @@ abstract class AppLocalizations {
   /// No description provided for @docUnits.
   ///
   /// In fr, this message translates to:
-  /// **'{count, plural, =1{1 {unit, select, slide{diapositive} sheet{feuille} part{partie} other{page}}} other{{count} {unit, select, slide{diapositives} sheet{feuilles} part{parties} other{pages}}}}'**
+  /// **'{count, plural, =0{aucune page} =1{1 {unit, select, slide{diapositive} sheet{feuille} part{partie} other{page}}} other{{count} {unit, select, slide{diapositives} sheet{feuilles} part{parties} other{pages}}}}'**
   String docUnits(int count, String unit);
 
   /// No description provided for @docVisibility.
@@ -1112,6 +1112,24 @@ abstract class AppLocalizations {
   /// **'Profil'**
   String get navProfile;
 
+  /// No description provided for @offlineHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos pages déjà lues restent disponibles ici : relisez-les et entraînez-vous.'**
+  String get offlineHint;
+
+  /// No description provided for @offlineNoPages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune page gardée sur cet appareil pour l’instant : ouvrez des pages une fois en ligne.'**
+  String get offlineNoPages;
+
+  /// No description provided for @offlineTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de connexion'**
+  String get offlineTitle;
+
   /// No description provided for @onlineAccountHint.
   ///
   /// In fr, this message translates to:
@@ -1313,7 +1331,7 @@ abstract class AppLocalizations {
   /// No description provided for @pageOfflineCopy.
   ///
   /// In fr, this message translates to:
-  /// **'Copie gardée sur le téléphone (pas de réseau).'**
+  /// **'Copie gardée sur cet appareil (pas de réseau).'**
   String get pageOfflineCopy;
 
   /// No description provided for @pagePrevious.
@@ -1661,7 +1679,7 @@ abstract class AppLocalizations {
   /// No description provided for @questionsCount.
   ///
   /// In fr, this message translates to:
-  /// **'{count, plural, =1{1 question} other{{count} questions}}'**
+  /// **'{count, plural, =0{aucune question} =1{1 question} other{{count} questions}}'**
   String questionsCount(int count);
 
   /// No description provided for @questionsPrepared.

@@ -126,7 +126,7 @@
   "docSelectHint": "Cochez les pages au programme pour préparer leurs questions, créer un match ou un tournoi, ou vous entraîner.",
   "docSelectNone": "Tout décocher",
   "docSelectRange": "Choisir de… à…",
-  "docSelected": "{count, plural, =1{1 page choisie} other{{count} pages choisies}}",
+  "docSelected": "{count, plural, =0{aucune page choisie} =1{1 page choisie} other{{count} pages choisies}}",
   "@docSelected": {
     "placeholders": {
       "count": {
@@ -152,7 +152,7 @@
   "docSharedHint": "Ceux qui ont son code peuvent l’ajouter, le lire et jouer dessus.",
   "docTo": "À",
   "docTournament": "Tournoi",
-  "docUnits": "{count, plural, =1{1 {unit, select, slide{diapositive} sheet{feuille} part{partie} other{page}}} other{{count} {unit, select, slide{diapositives} sheet{feuilles} part{parties} other{pages}}}}",
+  "docUnits": "{count, plural, =0{aucune page} =1{1 {unit, select, slide{diapositive} sheet{feuille} part{partie} other{page}}} other{{count} {unit, select, slide{diapositives} sheet{feuilles} part{parties} other{pages}}}}",
   "@docUnits": {
     "placeholders": {
       "count": {
@@ -384,6 +384,9 @@
   "navDocuments": "Documents",
   "navPlay": "Jouer",
   "navProfile": "Profil",
+  "offlineHint": "Vos pages déjà lues restent disponibles ici : relisez-les et entraînez-vous.",
+  "offlineNoPages": "Aucune page gardée sur cet appareil pour l’instant : ouvrez des pages une fois en ligne.",
+  "offlineTitle": "Pas de connexion",
   "onlineAccountHint": "Il faut un numéro de téléphone (code reçu par WhatsApp) et un pseudo.",
   "onlineBecomePlayer": "Devenir joueur",
   "onlineBy": "par {name}",
@@ -451,7 +454,7 @@
   "pageAiRunning": "IA en cours…",
   "pageEmpty": "Page sans texte",
   "pageNext": "Page suivante",
-  "pageOfflineCopy": "Copie gardée sur le téléphone (pas de réseau).",
+  "pageOfflineCopy": "Copie gardée sur cet appareil (pas de réseau).",
   "pagePrevious": "Page précédente",
   "pageRead": "Lire la page",
   "pageValidated": "{count} validée(s)",
@@ -616,7 +619,7 @@
   "pseudoLabel": "Pseudo",
   "pseudoSave": "C’est parti",
   "pseudoTitle": "Choisissez votre pseudo",
-  "questionsCount": "{count, plural, =1{1 question} other{{count} questions}}",
+  "questionsCount": "{count, plural, =0{aucune question} =1{1 question} other{{count} questions}}",
   "@questionsCount": {
     "placeholders": {
       "count": {
