@@ -998,6 +998,16 @@
     }
   },
   "scheduleTooSoon": "Programmez le match au moins 5 minutes à l’avance.",
+  "scheduleTournamentHint": "Choisir le jour et l’heure du début : inscription à l’avance, rappels avant le début.",
+  "scheduleTournamentSwitch": "Programmer le tournoi",
+  "scheduledEntries": "{count, plural, =0{aucun inscrit} =1{1 inscrit} other{{count} inscrits}}",
+  "@scheduledEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "scheduledFor": "Prévu {when}",
   "@scheduledFor": {
     "placeholders": {
@@ -1008,6 +1018,7 @@
   },
   "scheduledLobbyHint": "Inscrivez-vous et invitez dès maintenant ; rappels la veille et 10 minutes avant.",
   "scheduledTitle": "Matchs programmés",
+  "scheduledTournamentHint": "Inscrivez-vous dès maintenant ; rappels la veille et 10 minutes avant.",
   "scheduledYouOrganize": "vous organisez",
   "settingsDark": "Sombre",
   "settingsGuide": "Guide d’utilisation",
@@ -1374,6 +1385,60 @@
   "tourYouReady": "Vous êtes prêt",
   "tourYouWon": "Vous avez gagné le tournoi !",
   "tourYourDuel": "Votre duel",
+  "tournamentDropped": "Le tournoi « {name} » a commencé sans vous : vous étiez dans une autre partie.",
+  "@tournamentDropped": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tournamentReminderDay": "Rappel : le tournoi « {name} » commence {when}.",
+  "@tournamentReminderDay": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "tournamentReminderMoved": "Le tournoi « {name} » est déplacé : {when}.",
+  "@tournamentReminderMoved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "tournamentReminderSoon": "Le tournoi « {name} » commence dans 10 minutes.",
+  "@tournamentReminderSoon": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tournamentReminderStart": "C’est l’heure : le tournoi « {name} » va commencer.",
+  "@tournamentReminderStart": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tournamentReminderStartCreator": "C’est l’heure : lancez le tournoi « {name} ».",
+  "@tournamentReminderStartCreator": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "unblock": "Débloquer",
   "updateAvailable": "Version {version} disponible",
   "@updateAvailable": {

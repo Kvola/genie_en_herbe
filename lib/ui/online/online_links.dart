@@ -149,6 +149,7 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
     return switch (p['event']) {
       'team_invitation' || 'match_invitation' => () => OnlineHomeScreen.open(context),
       'match_reminder' when _id(p['match_id']) != null => () => MatchScreen.open(context, _id(p['match_id'])!),
+      'tournament_reminder' || 'tournament_dropped' when tournament != null => () => TournamentScreen.open(context, tournament),
       'tournament_invitation' when tournament != null => () => TournamentScreen.open(context, tournament),
       'group_joined' when _id(p['group_id']) != null => () => GroupScreen.open(context, _id(p['group_id'])!),
       'rematch' when code.isNotEmpty => () => joinByCode(context, ref, code: code),
@@ -172,6 +173,20 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
       'soon' => l.reminderSoon(code),
       'start' => '${p['creator']}' == 'true' ? l.reminderStartCreator(code) : l.reminderStart(code),
       'moved' => l.reminderMoved(code, when),
+      _ => '${p['body'] ?? ''}',
+    };
+  }
+
+  String _tournamentReminderText(Map<String, dynamic> p) {
+    final l = context.l10n;
+    final name = '${p['name'] ?? ''}';
+    final ms = _id(p['scheduled_at']);
+    final when = ms == null ? '' : formatSchedule(context, DateTime.fromMillisecondsSinceEpoch(ms, isUtc: true));
+    return switch (p['kind']) {
+      'day' => l.tournamentReminderDay(name, when),
+      'soon' => l.tournamentReminderSoon(name),
+      'start' => '${p['creator']}' == 'true' ? l.tournamentReminderStartCreator(name) : l.tournamentReminderStart(name),
+      'moved' => l.tournamentReminderMoved(name, when),
       _ => '${p['body'] ?? ''}',
     };
   }
@@ -212,6 +227,8 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
       'match_invitation' => l.inviteReceived('${p['inviter']}'),
       'match_reminder' => _reminderText(p),
       'match_dropped' => l.reminderDropped('${p['code']}'),
+      'tournament_reminder' => _tournamentReminderText(p),
+      'tournament_dropped' => l.tournamentDropped('${p['name']}'),
       'tournament_invitation' => l.eventTournamentInvitation('${p['inviter']}', '${p['name']}'),
       'group_joined' => l.eventGroupJoined('${p['pseudo']}', '${p['group_name']}'),
       'questions_ready' => '',

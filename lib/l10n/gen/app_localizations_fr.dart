@@ -1496,6 +1496,25 @@ class AppLocalizationsFr extends AppLocalizations {
       'Programmez le match au moins 5 minutes à l’avance.';
 
   @override
+  String get scheduleTournamentHint =>
+      'Choisir le jour et l’heure du début : inscription à l’avance, rappels avant le début.';
+
+  @override
+  String get scheduleTournamentSwitch => 'Programmer le tournoi';
+
+  @override
+  String scheduledEntries(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count inscrits',
+      one: '1 inscrit',
+      zero: 'aucun inscrit',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String scheduledFor(String when) {
     return 'Prévu $when';
   }
@@ -1506,6 +1525,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scheduledTitle => 'Matchs programmés';
+
+  @override
+  String get scheduledTournamentHint =>
+      'Inscrivez-vous dès maintenant ; rappels la veille et 10 minutes avant.';
 
   @override
   String get scheduledYouOrganize => 'vous organisez';
@@ -2033,6 +2056,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tourYourDuel => 'Votre duel';
+
+  @override
+  String tournamentDropped(String name) {
+    return 'Le tournoi « $name » a commencé sans vous : vous étiez dans une autre partie.';
+  }
+
+  @override
+  String tournamentReminderDay(String name, String when) {
+    return 'Rappel : le tournoi « $name » commence $when.';
+  }
+
+  @override
+  String tournamentReminderMoved(String name, String when) {
+    return 'Le tournoi « $name » est déplacé : $when.';
+  }
+
+  @override
+  String tournamentReminderSoon(String name) {
+    return 'Le tournoi « $name » commence dans 10 minutes.';
+  }
+
+  @override
+  String tournamentReminderStart(String name) {
+    return 'C’est l’heure : le tournoi « $name » va commencer.';
+  }
+
+  @override
+  String tournamentReminderStartCreator(String name) {
+    return 'C’est l’heure : lancez le tournoi « $name ».';
+  }
 
   @override
   String get unblock => 'Débloquer';

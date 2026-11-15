@@ -21,7 +21,7 @@ import 'tournament_screen.dart';
 class _Lobby {
   _Lobby(this.open, this.invitations, this.tournaments, this.scheduled);
 
-  final List<ScheduledMatch> scheduled;
+  final ({List<ScheduledMatch> matches, List<ScheduledTournament> tournaments}) scheduled;
 
   final ({List<OpenMatch> matches, List<OpenTournament> tournaments}) open;
   final ({List<Invitation> teams, List<MatchInvitation> matches}) invitations;
@@ -41,13 +41,13 @@ final _lobbyProvider = FutureProvider.autoDispose<_Lobby>((ref) async {
     service.openGames(),
     service.invitations(),
     service.myTournaments(),
-    service.scheduledMatches(),
+    service.scheduled(),
   ]);
   return _Lobby(
     results[0] as ({List<OpenMatch> matches, List<OpenTournament> tournaments}),
     results[1] as ({List<Invitation> teams, List<MatchInvitation> matches}),
     results[2] as List<OpenTournament>,
-    results[3] as List<ScheduledMatch>,
+    results[3] as ({List<ScheduledMatch> matches, List<ScheduledTournament> tournaments}),
   );
 });
 
@@ -304,9 +304,23 @@ class _PlayerHome extends ConsumerWidget {
             ),
           ),
       ],
-      if (data.scheduled.where((s) => s.role != 'invited').isNotEmpty) ...[
+      if (data.scheduled.matches.where((s) => s.role != 'invited').isNotEmpty || data.scheduled.tournaments.isNotEmpty) ...[
         SectionTitle(l.scheduledTitle),
-        for (final s in data.scheduled.where((s) => s.role != 'invited'))
+        for (final t in data.scheduled.tournaments)
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.emoji_events_outlined),
+              title: Text(t.name),
+              subtitle: Text([
+                if (t.scheduledAt != null) formatSchedule(context, t.scheduledAt!),
+                if (t.role == 'organizer') l.scheduledYouOrganize else l.onlineBy(t.organizer),
+                l.scheduledEntries(t.entries),
+              ].join(' · ')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => TournamentScreen.open(context, t.id),
+            ),
+          ),
+        for (final s in data.scheduled.matches.where((s) => s.role != 'invited'))
           Card(
             child: ListTile(
               leading: const Icon(Icons.event_outlined),
@@ -348,8 +362,12 @@ class _PlayerHome extends ConsumerWidget {
             child: ListTile(
               leading: const Icon(Icons.emoji_events_outlined),
               title: Text(t.name),
-              subtitle: Text('${t.mode == 'team' ? l.onlineModeTeam : l.onlineModeSolo} · ${t.pagesLabel} · '
-                  '${t.entries}/${t.maxEntries}'),
+              subtitle: Text([
+                if (t.scheduledAt != null) l.scheduledFor(formatSchedule(context, t.scheduledAt!)),
+                t.mode == 'team' ? l.onlineModeTeam : l.onlineModeSolo,
+                t.pagesLabel,
+                '${t.entries}/${t.maxEntries}',
+              ].join(' · ')),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => TournamentScreen.open(context, t.id),
             ),

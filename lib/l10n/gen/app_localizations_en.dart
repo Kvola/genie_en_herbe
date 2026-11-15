@@ -1486,6 +1486,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scheduleTooSoon => 'Schedule the match at least 5 minutes ahead.';
 
   @override
+  String get scheduleTournamentHint =>
+      'Pick the start day and time: sign-up in advance, reminders before it starts.';
+
+  @override
+  String get scheduleTournamentSwitch => 'Schedule the tournament';
+
+  @override
+  String scheduledEntries(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count entries',
+      one: '1 entry',
+      zero: 'no entries',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String scheduledFor(String when) {
     return 'Scheduled $when';
   }
@@ -1496,6 +1515,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scheduledTitle => 'Scheduled matches';
+
+  @override
+  String get scheduledTournamentHint =>
+      'Sign up now; reminders the day before and 10 minutes ahead.';
 
   @override
   String get scheduledYouOrganize => 'you organise';
@@ -2018,6 +2041,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tourYourDuel => 'Your duel';
+
+  @override
+  String tournamentDropped(String name) {
+    return 'The “$name” tournament started without you: you were in another game.';
+  }
+
+  @override
+  String tournamentReminderDay(String name, String when) {
+    return 'Reminder: the “$name” tournament starts $when.';
+  }
+
+  @override
+  String tournamentReminderMoved(String name, String when) {
+    return 'The “$name” tournament has moved: $when.';
+  }
+
+  @override
+  String tournamentReminderSoon(String name) {
+    return 'The “$name” tournament starts in 10 minutes.';
+  }
+
+  @override
+  String tournamentReminderStart(String name) {
+    return 'It’s time: the “$name” tournament is about to start.';
+  }
+
+  @override
+  String tournamentReminderStartCreator(String name) {
+    return 'It’s time: start the “$name” tournament.';
+  }
 
   @override
   String get unblock => 'Unblock';

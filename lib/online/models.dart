@@ -293,6 +293,9 @@ class TournamentState {
   String get pagesLabel => _str(json['pages_label']);
   List<PageRef> get pages => PageRef.list(json['pages']);
 
+  /// Tournoi programmé : l'heure prévue (null sinon).
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
+
   /// Tournoi réservé aux membres d'un groupe.
   String? get groupName => json['group'] is Map ? _str((json['group'] as Map)['name']) : null;
 
@@ -371,6 +374,7 @@ class OpenTournament {
   int get entries => _int(json['entries']);
   int get maxEntries => _int(json['max_entries']);
   String? get winner => json['winner'] as String?;
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
 }
 
 class Invitation {
@@ -472,6 +476,22 @@ class ScheduledMatch {
   /// `organizer`, `player` ou `invited`.
   String get role => _str(json['role']);
   String get creator => _str(json['creator']);
+}
+
+/// Un de mes tournois programmés à venir.
+class ScheduledTournament {
+  ScheduledTournament(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get id => _int(json['id']);
+  String get name => _str(json['name']);
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
+  int get entries => _int(json['entries']);
+
+  /// `organizer` ou `player`.
+  String get role => _str(json['role']);
+  String get organizer => _str(json['organizer']);
 }
 
 /// Un joueur de « Mes joueurs ».

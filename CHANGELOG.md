@@ -1,5 +1,9 @@
 # Journal
 
+## 1.3.0 (build 6) — 15 novembre 2026
+
+- **Tournois programmés** : jour et heure du début choisis à la création ; inscription à l'avance sans être bloqué ailleurs ; rappels la veille, 10 minutes avant et à l'heure ; heure modifiable par l'organisateur ; dans « Matchs programmés » ; date affichée dans les tournois ouverts.
+
 ## 1.2.0 (build 5) — 15 novembre 2026
 
 - **Matchs programmés** : jour et heure choisis à la création (5 minutes à 30 jours) ; inscription sans être bloqué ailleurs ; rappels la veille, 10 minutes avant et à l'heure ; heure modifiable ; rubrique « Matchs programmés » dans Jouer.

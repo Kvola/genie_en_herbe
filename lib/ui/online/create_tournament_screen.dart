@@ -9,6 +9,7 @@ import '../../online/online_providers.dart';
 import '../../online/tournament_controller.dart';
 import '../common.dart';
 import 'online_common.dart';
+import 'schedule.dart';
 import 'tournament_screen.dart';
 
 /// Nouveau tournoi : nom, formule, pages au programme, participants, réglages des duels.
@@ -28,6 +29,9 @@ final _myGroupsProvider = FutureProvider.autoDispose((ref) => ref.watch(onlineSe
 
 class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen> {
   int? _groupId;
+
+  /// Tournoi programmé : l'heure prévue (null = inscriptions ouvertes, lancement à la main quand on veut).
+  DateTime? _scheduledAt;
   final _form = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _teamName = TextEditingController();
@@ -137,6 +141,32 @@ class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen>
                     requiredCount: count + 3,
                     onChanged: (v) => setState(() => _pages = v),
                   ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(l.scheduleTournamentSwitch),
+                    subtitle: Text(_scheduledAt == null ? l.scheduleTournamentHint : formatSchedule(context, _scheduledAt!)),
+                    value: _scheduledAt != null,
+                    onChanged: (v) async {
+                      if (!v) {
+                        setState(() => _scheduledAt = null);
+                        return;
+                      }
+                      final at = await pickSchedule(context);
+                      if (at != null && mounted) setState(() => _scheduledAt = at);
+                    },
+                  ),
+                  if (_scheduledAt != null)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton.icon(
+                        icon: const Icon(Icons.edit_calendar_outlined),
+                        label: Text(l.scheduleChange),
+                        onPressed: () async {
+                          final at = await pickSchedule(context, initial: _scheduledAt);
+                          if (at != null && mounted) setState(() => _scheduledAt = at);
+                        },
+                      ),
+                    ),
                   if (ref.watch(_myGroupsProvider).value case final groups? when groups.isNotEmpty) ...[
                     const SizedBox(height: 8),
                     DropdownButtonFormField<int?>(
@@ -246,6 +276,7 @@ class _CreateTournamentScreenState extends ConsumerState<CreateTournamentScreen>
                             'mode': _mode,
                             'pages': _pages.pageIds,
                             'group_id': _groupId,
+                            'scheduled_at': _scheduledAt?.millisecondsSinceEpoch,
                             'question_count': count,
                             'question_seconds': seconds,
                             'hand_seconds': hand,

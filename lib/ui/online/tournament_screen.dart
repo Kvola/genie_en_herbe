@@ -12,6 +12,7 @@ import '../../online/tournament_controller.dart';
 import '../common.dart';
 import 'match_screen.dart';
 import 'invite_sheet.dart';
+import 'schedule.dart';
 import '../documents/page_picker_screen.dart';
 import '../documents/page_reader_screen.dart';
 import 'online_common.dart';
@@ -169,6 +170,30 @@ class _TournamentScreenState extends ConsumerState<TournamentScreen> {
         ),
       if (t.state == 'finished') _WinnerBanner(state: t, myEntryId: me),
       if (t.state == 'running') ..._myDuel(context, t, me, busy),
+      if (t.state == 'registration' && t.scheduledAt != null)
+        Card(
+          child: ListTile(
+            leading: const Icon(Icons.event_outlined),
+            title: Text(l.scheduledFor(formatSchedule(context, t.scheduledAt!)),
+                style: const TextStyle(fontWeight: FontWeight.w600)),
+            subtitle: Text([scheduleCountdown(context, t.scheduledAt!), l.scheduledTournamentHint]
+                .where((x) => x.isNotEmpty)
+                .join(' · ')),
+            trailing: organizer
+                ? IconButton(
+                    tooltip: l.scheduleChange,
+                    icon: const Icon(Icons.edit_calendar_outlined),
+                    onPressed: () async {
+                      final at = await pickSchedule(context, initial: t.scheduledAt!.toLocal());
+                      if (at == null || !context.mounted) return;
+                      final ok = await _run((c) => c.action('reschedule', {'scheduled_at': at.millisecondsSinceEpoch}));
+                      if (ok == true && context.mounted) context.toast(l.scheduleMoved);
+                    },
+                  )
+                : null,
+          ),
+        ),
+      if (t.state == 'registration' && t.scheduledAt != null) const SizedBox(height: 8),
       if (t.state == 'registration') ...[
         CodeShareCard(
           code: t.code,

@@ -327,9 +327,14 @@ class OnlineService {
   }
 
   /// Mes matchs programmés à venir (organisés, rejoints, ou auxquels je suis invité).
-  Future<List<ScheduledMatch>> scheduledMatches() async {
+  Future<({List<ScheduledMatch> matches, List<ScheduledTournament> tournaments})> scheduled() async {
     final r = await read('/match/scheduled');
-    return [for (final m in (r['matches'] as List? ?? const []).whereType<Map>()) ScheduledMatch(m.cast())];
+    return (
+      matches: [for (final m in (r['matches'] as List? ?? const []).whereType<Map>()) ScheduledMatch(m.cast())],
+      tournaments: [
+        for (final m in (r['tournaments'] as List? ?? const []).whereType<Map>()) ScheduledTournament(m.cast()),
+      ],
+    );
   }
 
   // ------------------------------------------------------------------ inviter

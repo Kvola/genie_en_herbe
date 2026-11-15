@@ -41,6 +41,8 @@ L'invité est prévenu (notification sur son téléphone, même application ferm
 - Vos matchs programmés sont dans **Jouer**, rubrique **Matchs programmés**.
 - Au lancement, un joueur encore occupé dans une autre partie est écarté du match (il en est prévenu). Un match que personne ne lance dans l'heure qui suit est annulé.
 
+**Tournois programmés** : même principe à la création d'un tournoi (**Programmer le tournoi**). Les inscriptions sont ouvertes dès maintenant ; chacun est retenu au lancement. Un joueur inscrit seul et encore occupé ailleurs est écarté ; dans une équipe, le membre occupé est retiré, et l'équipe qui n'a plus assez de joueurs n'est pas retenue. Rappels la veille, 10 minutes avant et à l'heure (l'organisateur : « lancez le tournoi ») ; un tournoi que personne ne lance dans l'heure qui suit est annulé.
+
 > **Situation** — Le lundi, M. Traoré programme le match de révision du vendredi à 15 h et invite le groupe « 3e B ». Les élèves reçoivent un rappel le jeudi, puis 10 minutes avant le début.
 
 ### Groupes

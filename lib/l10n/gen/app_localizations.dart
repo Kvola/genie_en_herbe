@@ -2396,6 +2396,24 @@ abstract class AppLocalizations {
   /// **'Programmez le match au moins 5 minutes à l’avance.'**
   String get scheduleTooSoon;
 
+  /// No description provided for @scheduleTournamentHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir le jour et l’heure du début : inscription à l’avance, rappels avant le début.'**
+  String get scheduleTournamentHint;
+
+  /// No description provided for @scheduleTournamentSwitch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Programmer le tournoi'**
+  String get scheduleTournamentSwitch;
+
+  /// No description provided for @scheduledEntries.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{aucun inscrit} =1{1 inscrit} other{{count} inscrits}}'**
+  String scheduledEntries(int count);
+
   /// No description provided for @scheduledFor.
   ///
   /// In fr, this message translates to:
@@ -2413,6 +2431,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Matchs programmés'**
   String get scheduledTitle;
+
+  /// No description provided for @scheduledTournamentHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscrivez-vous dès maintenant ; rappels la veille et 10 minutes avant.'**
+  String get scheduledTournamentHint;
 
   /// No description provided for @scheduledYouOrganize.
   ///
@@ -3295,6 +3319,42 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Votre duel'**
   String get tourYourDuel;
+
+  /// No description provided for @tournamentDropped.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le tournoi « {name} » a commencé sans vous : vous étiez dans une autre partie.'**
+  String tournamentDropped(String name);
+
+  /// No description provided for @tournamentReminderDay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappel : le tournoi « {name} » commence {when}.'**
+  String tournamentReminderDay(String name, String when);
+
+  /// No description provided for @tournamentReminderMoved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le tournoi « {name} » est déplacé : {when}.'**
+  String tournamentReminderMoved(String name, String when);
+
+  /// No description provided for @tournamentReminderSoon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le tournoi « {name} » commence dans 10 minutes.'**
+  String tournamentReminderSoon(String name);
+
+  /// No description provided for @tournamentReminderStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'C’est l’heure : le tournoi « {name} » va commencer.'**
+  String tournamentReminderStart(String name);
+
+  /// No description provided for @tournamentReminderStartCreator.
+  ///
+  /// In fr, this message translates to:
+  /// **'C’est l’heure : lancez le tournoi « {name} ».'**
+  String tournamentReminderStartCreator(String name);
 
   /// No description provided for @unblock.
   ///
