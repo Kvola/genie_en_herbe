@@ -1,5 +1,10 @@
 # Journal
 
+## 1.2.0 (build 5) — 15 novembre 2026
+
+- **Matchs programmés** : jour et heure choisis à la création (5 minutes à 30 jours) ; inscription sans être bloqué ailleurs ; rappels la veille, 10 minutes avant et à l'heure ; heure modifiable ; rubrique « Matchs programmés » dans Jouer.
+- **Notifications** sur le téléphone (Firebase), même application fermée : invitations, rappels, tournois.
+
 ## 1.1.0 (build 4) — 15 novembre 2026
 
 - **Inviter des joueurs** à un match : par pseudo, parmi « Mes joueurs » (ceux avec qui l'on a joué, favoris), ou tout un groupe d'un geste ; la salle d'attente montre les invitations ; l'invité accepte ou refuse depuis Jouer.

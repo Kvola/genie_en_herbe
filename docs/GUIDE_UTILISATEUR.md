@@ -28,9 +28,20 @@ Dans la salle d'attente d'un match, touchez **Inviter des joueurs** :
 - **Mes joueurs** : ceux avec qui vous avez déjà joué (vos favoris en tête) ; cochez-en plusieurs.
 - **Mes groupes** : **Inviter le groupe** prévient tous ses membres d'un geste.
 
-L'invité est prévenu, accepte (il entre dans la salle d'attente) ou refuse ; la salle d'attente montre qui est invité et qui a refusé. Une invitation tombe d'elle-même quand le match commence. Le code du match, son QR code et le lien WhatsApp marchent toujours, pour ceux qui n'ont pas encore de compte.
+L'invité est prévenu (notification sur son téléphone, même application fermée), accepte (il entre dans la salle d'attente) ou refuse ; la salle d'attente montre qui est invité et qui a refusé. Une invitation tombe d'elle-même quand le match commence. Le code du match, son QR code et le lien WhatsApp marchent toujours, pour ceux qui n'ont pas encore de compte.
 
 > **Situation** — M. Traoré a créé le groupe « 3e B » et affiché son code au tableau : chaque élève l'a saisi une fois dans **Jouer → Rejoindre**. Avant chaque séance de révision, il crée le match puis touche **Inviter le groupe** : toute la classe le retrouve dans **Jouer**, rubrique Invitations.
+
+### Programmer un match
+
+À la création d'un match, activez **Programmer le match** et choisissez le jour et l'heure (de 5 minutes à 30 jours à l'avance). Les joueurs s'inscrivent et sont invités dès maintenant, sans être bloqués pour autant : ils peuvent jouer d'autres parties en attendant.
+
+- **Rappels** : la veille (pour un match programmé au moins un jour à l'avance), 10 minutes avant, puis à l'heure — l'organisateur est alors invité à **lancer le match**.
+- **Changer l'heure** : depuis la salle d'attente (icône calendrier) ; tous les inscrits et invités sont prévenus.
+- Vos matchs programmés sont dans **Jouer**, rubrique **Matchs programmés**.
+- Au lancement, un joueur encore occupé dans une autre partie est écarté du match (il en est prévenu). Un match que personne ne lance dans l'heure qui suit est annulé.
+
+> **Situation** — Le lundi, M. Traoré programme le match de révision du vendredi à 15 h et invite le groupe « 3e B ». Les élèves reçoivent un rappel le jeudi, puis 10 minutes avant le début.
 
 ### Groupes
 

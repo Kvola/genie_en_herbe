@@ -8,6 +8,8 @@ import '../../online/online_providers.dart';
 import '../common.dart';
 import '../documents/library_screen.dart';
 import '../profile/groups_screen.dart';
+import 'match_screen.dart';
+import 'schedule.dart';
 import 'online_home_screen.dart';
 import 'projection_screen.dart';
 import 'tournament_screen.dart';
@@ -146,6 +148,7 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
     final code = '${p['code'] ?? ''}';
     return switch (p['event']) {
       'team_invitation' || 'match_invitation' => () => OnlineHomeScreen.open(context),
+      'match_reminder' when _id(p['match_id']) != null => () => MatchScreen.open(context, _id(p['match_id'])!),
       'tournament_invitation' when tournament != null => () => TournamentScreen.open(context, tournament),
       'group_joined' when _id(p['group_id']) != null => () => GroupScreen.open(context, _id(p['group_id'])!),
       'rematch' when code.isNotEmpty => () => joinByCode(context, ref, code: code),
@@ -155,6 +158,21 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
           ? () => TournamentScreen.open(context, tournament)
           : () => OnlineHomeScreen.open(context),
       _ => null,
+    };
+  }
+
+  /// Rappel d'un match programmé, dans la langue de l'application.
+  String _reminderText(Map<String, dynamic> p) {
+    final l = context.l10n;
+    final code = '${p['code'] ?? ''}';
+    final ms = _id(p['scheduled_at']);
+    final when = ms == null ? '' : formatSchedule(context, DateTime.fromMillisecondsSinceEpoch(ms, isUtc: true));
+    return switch (p['kind']) {
+      'day' => l.reminderDay(when, code),
+      'soon' => l.reminderSoon(code),
+      'start' => '${p['creator']}' == 'true' ? l.reminderStartCreator(code) : l.reminderStart(code),
+      'moved' => l.reminderMoved(code, when),
+      _ => '${p['body'] ?? ''}',
     };
   }
 
@@ -192,6 +210,8 @@ class _OnlineLinkHandlerState extends ConsumerState<OnlineLinkHandler> {
     final text = switch (p['event']) {
       'team_invitation' => l.eventInvitation('${p['captain']}', '${p['team_name']}'),
       'match_invitation' => l.inviteReceived('${p['inviter']}'),
+      'match_reminder' => _reminderText(p),
+      'match_dropped' => l.reminderDropped('${p['code']}'),
       'tournament_invitation' => l.eventTournamentInvitation('${p['inviter']}', '${p['name']}'),
       'group_joined' => l.eventGroupJoined('${p['pseudo']}', '${p['group_name']}'),
       'questions_ready' => '',

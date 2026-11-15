@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icône de notification : la pousse et le livre ouvert (logo), en silhouette.
+     Android la teinte : blanc dans la barre d'état, or dans le volet. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Feuilles. -->
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M11.4,11.2C11.4,8.6 9.2,7 6.2,7.2 5.4,7.3 4.6,7.6 4.2,8.2 4.6,10.6 7.4,12 11.4,11.2Z"/>
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M12.6,9.6C12.6,6.6 15,4.6 18.4,4.8 19.2,4.9 19.8,5.2 20.2,5.7 19.8,8.6 16.8,10.4 12.6,9.6Z"/>
+    <!-- Tige. -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M11.3,9.4h1.4v8.6h-1.4z"/>
+    <!-- Livre ouvert. -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M3,16.2l8.4,1.6v3.4L3,19.6z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M21,16.2l-8.4,1.6v3.4l8.4,-1.6z"/>
+</vector>

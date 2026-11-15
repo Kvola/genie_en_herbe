@@ -2024,6 +2024,42 @@ abstract class AppLocalizations {
   /// **'Questions prêtes.'**
   String get questionsPrepared;
 
+  /// No description provided for @reminderDay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappel : match {when} (code {code}).'**
+  String reminderDay(String when, String code);
+
+  /// No description provided for @reminderDropped.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le match {code} a commencé sans vous : vous étiez dans une autre partie.'**
+  String reminderDropped(String code);
+
+  /// No description provided for @reminderMoved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le match {code} est déplacé : {when}.'**
+  String reminderMoved(String code, String when);
+
+  /// No description provided for @reminderSoon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le match {code} commence dans 10 minutes.'**
+  String reminderSoon(String code);
+
+  /// No description provided for @reminderStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'C’est l’heure : rejoignez le match {code}.'**
+  String reminderStart(String code);
+
+  /// No description provided for @reminderStartCreator.
+  ///
+  /// In fr, this message translates to:
+  /// **'C’est l’heure : lancez le match {code}.'**
+  String reminderStartCreator(String code);
+
   /// No description provided for @report.
   ///
   /// In fr, this message translates to:
@@ -2281,6 +2317,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Saisir le code'**
   String get scanTypeCode;
+
+  /// No description provided for @scheduleChange.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer l’heure'**
+  String get scheduleChange;
+
+  /// No description provided for @scheduleDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jour du match'**
+  String get scheduleDate;
+
+  /// No description provided for @scheduleInDays.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{dans moins d’un jour} =1{dans 1 jour} other{dans {count} jours}}'**
+  String scheduleInDays(int count);
+
+  /// No description provided for @scheduleInHours.
+  ///
+  /// In fr, this message translates to:
+  /// **'dans {hours} h {minutes} min'**
+  String scheduleInHours(int hours, int minutes);
+
+  /// No description provided for @scheduleInMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'dans {minutes} min'**
+  String scheduleInMinutes(int minutes);
+
+  /// No description provided for @scheduleMoved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure changée : les joueurs sont prévenus.'**
+  String get scheduleMoved;
+
+  /// No description provided for @scheduleOn.
+  ///
+  /// In fr, this message translates to:
+  /// **'{day} à {time}'**
+  String scheduleOn(String day, String time);
+
+  /// No description provided for @scheduleSwitch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Programmer le match'**
+  String get scheduleSwitch;
+
+  /// No description provided for @scheduleSwitchHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir le jour et l’heure : les joueurs s’inscrivent à l’avance et reçoivent des rappels.'**
+  String get scheduleSwitchHint;
+
+  /// No description provided for @scheduleTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure du match'**
+  String get scheduleTime;
+
+  /// No description provided for @scheduleToday.
+  ///
+  /// In fr, this message translates to:
+  /// **'aujourd’hui à {time}'**
+  String scheduleToday(String time);
+
+  /// No description provided for @scheduleTomorrow.
+  ///
+  /// In fr, this message translates to:
+  /// **'demain à {time}'**
+  String scheduleTomorrow(String time);
+
+  /// No description provided for @scheduleTooSoon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Programmez le match au moins 5 minutes à l’avance.'**
+  String get scheduleTooSoon;
+
+  /// No description provided for @scheduledFor.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prévu {when}'**
+  String scheduledFor(String when);
+
+  /// No description provided for @scheduledLobbyHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscrivez-vous et invitez dès maintenant ; rappels la veille et 10 minutes avant.'**
+  String get scheduledLobbyHint;
+
+  /// No description provided for @scheduledTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Matchs programmés'**
+  String get scheduledTitle;
+
+  /// No description provided for @scheduledYouOrganize.
+  ///
+  /// In fr, this message translates to:
+  /// **'vous organisez'**
+  String get scheduledYouOrganize;
 
   /// No description provided for @settingsDark.
   ///

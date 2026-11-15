@@ -13,12 +13,15 @@ import 'match_screen.dart';
 import 'online_common.dart';
 import 'projection_screen.dart';
 import 'scan_screen.dart';
+import 'schedule.dart';
 import 'sign_in_screen.dart';
 import 'tournament_screen.dart';
 
 /// Ce que l'écran d'accueil du jeu en ligne charge à chaque ouverture.
 class _Lobby {
-  _Lobby(this.open, this.invitations, this.tournaments);
+  _Lobby(this.open, this.invitations, this.tournaments, this.scheduled);
+
+  final List<ScheduledMatch> scheduled;
 
   final ({List<OpenMatch> matches, List<OpenTournament> tournaments}) open;
   final ({List<Invitation> teams, List<MatchInvitation> matches}) invitations;
@@ -34,11 +37,17 @@ final _lobbyProvider = FutureProvider.autoDispose<_Lobby>((ref) async {
     final p = me.value?.player;
     return (p?.matchId, p?.tournamentId, p?.played);
   }));
-  final results = await Future.wait([service.openGames(), service.invitations(), service.myTournaments()]);
+  final results = await Future.wait([
+    service.openGames(),
+    service.invitations(),
+    service.myTournaments(),
+    service.scheduledMatches(),
+  ]);
   return _Lobby(
     results[0] as ({List<OpenMatch> matches, List<OpenTournament> tournaments}),
     results[1] as ({List<Invitation> teams, List<MatchInvitation> matches}),
     results[2] as List<OpenTournament>,
+    results[3] as List<ScheduledMatch>,
   );
 });
 
@@ -245,7 +254,11 @@ class _PlayerHome extends ConsumerWidget {
             child: ListTile(
               leading: const Icon(Icons.mail_outline),
               title: Text(l.inviteReceived(inv.inviter)),
-              subtitle: Text('${inv.pagesLabel} · ${l.invitePlayersIn(inv.players)}'),
+              subtitle: Text([
+                inv.pagesLabel,
+                if (inv.scheduledAt != null) formatSchedule(context, inv.scheduledAt!),
+                l.invitePlayersIn(inv.players),
+              ].join(' · ')),
               trailing: Wrap(
                 children: [
                   IconButton(
@@ -291,6 +304,23 @@ class _PlayerHome extends ConsumerWidget {
             ),
           ),
       ],
+      if (data.scheduled.where((s) => s.role != 'invited').isNotEmpty) ...[
+        SectionTitle(l.scheduledTitle),
+        for (final s in data.scheduled.where((s) => s.role != 'invited'))
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.event_outlined),
+              title: Text(s.scheduledAt == null ? s.code : formatSchedule(context, s.scheduledAt!)),
+              subtitle: Text([
+                s.pagesLabel,
+                if (s.role == 'organizer') l.scheduledYouOrganize else l.onlineBy(s.creator),
+                l.invitePlayersIn(s.players),
+              ].join(' · ')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => MatchScreen.open(context, s.id),
+            ),
+          ),
+      ],
       SectionTitle(l.onlineOpenMatches),
       if (data.open.matches.isEmpty)
         Text(l.onlineNoOpenMatch, style: Theme.of(context).textTheme.bodySmall)
@@ -300,8 +330,13 @@ class _PlayerHome extends ConsumerWidget {
             child: ListTile(
               leading: Icon(m.mode == 'team' ? Icons.groups_outlined : Icons.person_outline),
               title: Text(m.pagesLabel),
-              subtitle: Text('${l.onlineBy(m.creator)} · ${l.onlinePlayers(m.players, m.maxPlayers)} · '
-                  '${l.questionsCount(m.questionCount)} · ${m.lang.toUpperCase()}'),
+              subtitle: Text([
+                if (m.scheduledAt != null) l.scheduledFor(formatSchedule(context, m.scheduledAt!)),
+                l.onlineBy(m.creator),
+                l.onlinePlayers(m.players, m.maxPlayers),
+                l.questionsCount(m.questionCount),
+                m.lang.toUpperCase(),
+              ].join(' · ')),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => joinByCode(context, ref, code: m.code),
             ),

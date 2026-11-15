@@ -8,6 +8,7 @@ import '../../online/online_providers.dart';
 import '../common.dart';
 import 'match_screen.dart';
 import 'online_common.dart';
+import 'schedule.dart';
 
 /// Nouveau match : formule, pages au programme, nombre de questions et temps, organisateur sans jouer.
 class CreateMatchScreen extends ConsumerStatefulWidget {
@@ -27,6 +28,9 @@ class _CreateMatchScreenState extends ConsumerState<CreateMatchScreen> {
   String _mode = 'solo';
   late PageSelection _pages = widget.initialPages;
   bool _hostOnly = false;
+
+  /// Match programmé : l'heure prévue (null = tout de suite).
+  DateTime? _scheduledAt;
   int? _count;
   int? _seconds;
   int? _hand;
@@ -40,6 +44,7 @@ class _CreateMatchScreenState extends ConsumerState<CreateMatchScreen> {
       'mode': _mode,
       'pages': _pages.pageIds,
       'host_only': _hostOnly,
+      'scheduled_at': _scheduledAt?.millisecondsSinceEpoch,
       'question_count': _count,
       'question_seconds': _seconds,
       'hand_seconds': _hand,
@@ -96,6 +101,32 @@ class _CreateMatchScreenState extends ConsumerState<CreateMatchScreen> {
                   requiredCount: count,
                   onChanged: (v) => setState(() => _pages = v),
                 ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l.scheduleSwitch),
+                  subtitle: Text(_scheduledAt == null ? l.scheduleSwitchHint : formatSchedule(context, _scheduledAt!)),
+                  value: _scheduledAt != null,
+                  onChanged: (v) async {
+                    if (!v) {
+                      setState(() => _scheduledAt = null);
+                      return;
+                    }
+                    final at = await pickSchedule(context);
+                    if (at != null && mounted) setState(() => _scheduledAt = at);
+                  },
+                ),
+                if (_scheduledAt != null)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      icon: const Icon(Icons.edit_calendar_outlined),
+                      label: Text(l.scheduleChange),
+                      onPressed: () async {
+                        final at = await pickSchedule(context, initial: _scheduledAt);
+                        if (at != null && mounted) setState(() => _scheduledAt = at);
+                      },
+                    ),
+                  ),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(l.createHostOnly),

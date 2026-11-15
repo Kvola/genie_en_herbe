@@ -326,6 +326,12 @@ class OnlineService {
     return (match: MatchEnvelope.parse(r), tournament: null, group: null);
   }
 
+  /// Mes matchs programmés à venir (organisés, rejoints, ou auxquels je suis invité).
+  Future<List<ScheduledMatch>> scheduledMatches() async {
+    final r = await read('/match/scheduled');
+    return [for (final m in (r['matches'] as List? ?? const []).whereType<Map>()) ScheduledMatch(m.cast())];
+  }
+
   // ------------------------------------------------------------------ inviter
   Future<({InviteResult result, MatchEnvelope envelope})> inviteToMatch(
     int matchId, {

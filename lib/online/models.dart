@@ -9,6 +9,7 @@ import 'doc_models.dart';
 int _int(Object? v, [int fallback = 0]) => v is num ? v.toInt() : fallback;
 int? _intOrNull(Object? v) => v is num ? v.toInt() : null;
 String _str(Object? v) => v == null ? '' : '$v';
+DateTime? _dt(Object? v) => v is num ? DateTime.fromMillisecondsSinceEpoch(v.toInt(), isUtc: true) : null;
 List<Map<String, dynamic>> _maps(Object? v) =>
     v is List ? v.whereType<Map>().map((m) => m.cast<String, dynamic>()).toList() : const [];
 
@@ -181,6 +182,9 @@ class MatchState {
   List<PageRef> get pages => PageRef.list(json['pages']);
   String get pagesLabel => _str(json['pages_label']);
 
+  /// Match programmé : l'heure prévue (null sinon).
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
+
   /// Invitations envoyées pour ce match (salle d'attente).
   List<SentInvitation> get invitations => [for (final m in _maps(json['invitations'])) SentInvitation(m)];
   Map<String, dynamic> get settings => (json['settings'] as Map?)?.cast<String, dynamic>() ?? const {};
@@ -346,6 +350,7 @@ class OpenMatch {
   String get pagesLabel => _str(json['pages_label']);
   String get creator => _str(json['creator']);
   bool get hostOnly => json['host_only'] == true;
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
   int get players => _int(json['players']);
   int get maxPlayers => _int(json['max_players']);
   int get questionCount => _int(json['question_count']);
@@ -449,6 +454,24 @@ class MatchInvitation {
   String get pagesLabel => _str(json['pages_label']);
   String get mode => _str(json['mode']);
   int get players => _int(json['players']);
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
+}
+
+/// Un de mes matchs programmés à venir.
+class ScheduledMatch {
+  ScheduledMatch(this.json);
+
+  final Map<String, dynamic> json;
+
+  int get id => _int(json['id']);
+  String get code => _str(json['code']);
+  String get pagesLabel => _str(json['pages_label']);
+  DateTime? get scheduledAt => _dt(json['scheduled_at']);
+  int get players => _int(json['players']);
+
+  /// `organizer`, `player` ou `invited`.
+  String get role => _str(json['role']);
+  String get creator => _str(json['creator']);
 }
 
 /// Un joueur de « Mes joueurs ».

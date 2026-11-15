@@ -1256,6 +1256,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get questionsPrepared => 'Questions ready.';
 
   @override
+  String reminderDay(String when, String code) {
+    return 'Reminder: match $when (code $code).';
+  }
+
+  @override
+  String reminderDropped(String code) {
+    return 'Match $code started without you: you were in another game.';
+  }
+
+  @override
+  String reminderMoved(String code, String when) {
+    return 'Match $code has moved: $when.';
+  }
+
+  @override
+  String reminderSoon(String code) {
+    return 'Match $code starts in 10 minutes.';
+  }
+
+  @override
+  String reminderStart(String code) {
+    return 'It’s time: join match $code.';
+  }
+
+  @override
+  String reminderStartCreator(String code) {
+    return 'It’s time: start match $code.';
+  }
+
+  @override
   String get report => 'Report this nickname';
 
   @override
@@ -1395,6 +1425,80 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanTypeCode => 'Type the code';
+
+  @override
+  String get scheduleChange => 'Change the time';
+
+  @override
+  String get scheduleDate => 'Match day';
+
+  @override
+  String scheduleInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'in 1 day',
+      zero: 'in less than a day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String scheduleInHours(int hours, int minutes) {
+    return 'in $hours h $minutes min';
+  }
+
+  @override
+  String scheduleInMinutes(int minutes) {
+    return 'in $minutes min';
+  }
+
+  @override
+  String get scheduleMoved => 'Time changed: players are told.';
+
+  @override
+  String scheduleOn(String day, String time) {
+    return '$day at $time';
+  }
+
+  @override
+  String get scheduleSwitch => 'Schedule the match';
+
+  @override
+  String get scheduleSwitchHint =>
+      'Pick the day and time: players sign up in advance and get reminders.';
+
+  @override
+  String get scheduleTime => 'Match time';
+
+  @override
+  String scheduleToday(String time) {
+    return 'today at $time';
+  }
+
+  @override
+  String scheduleTomorrow(String time) {
+    return 'tomorrow at $time';
+  }
+
+  @override
+  String get scheduleTooSoon => 'Schedule the match at least 5 minutes ahead.';
+
+  @override
+  String scheduledFor(String when) {
+    return 'Scheduled $when';
+  }
+
+  @override
+  String get scheduledLobbyHint =>
+      'Sign up and invite now; reminders the day before and 10 minutes ahead.';
+
+  @override
+  String get scheduledTitle => 'Scheduled matches';
+
+  @override
+  String get scheduledYouOrganize => 'you organise';
 
   @override
   String get settingsDark => 'Dark';

@@ -14,6 +14,7 @@ import '../common.dart';
 import '../documents/page_reader_screen.dart';
 import 'online_common.dart';
 import 'invite_sheet.dart';
+import 'schedule.dart';
 
 /// Un match : salle d'attente, puis les questions à la main, puis les résultats.
 ///
@@ -217,6 +218,29 @@ class _LobbyView extends ConsumerWidget {
                           '${l.lobbySettings(m.questionCount, m.questionSeconds, '${m.handSeconds}')}',
                         ),
                       ),
+                      if (m.scheduledAt != null)
+                        ListTile(
+                          leading: const Icon(Icons.event_outlined),
+                          title: Text(l.scheduledFor(formatSchedule(context, m.scheduledAt!)),
+                              style: const TextStyle(fontWeight: FontWeight.w600)),
+                          subtitle: Text([
+                            scheduleCountdown(context, m.scheduledAt!),
+                            l.scheduledLobbyHint,
+                          ].where((t) => t.isNotEmpty).join(' · ')),
+                          trailing: isCreator
+                              ? IconButton(
+                                  tooltip: l.scheduleChange,
+                                  icon: const Icon(Icons.edit_calendar_outlined),
+                                  onPressed: () async {
+                                    final at = await pickSchedule(context, initial: m.scheduledAt!.toLocal());
+                                    if (at == null || !context.mounted) return;
+                                    final ok = await runOnline(context, () => ref.read(onlineServiceProvider)
+                                        .matchAction('settings', m.id, {'scheduled_at': at.millisecondsSinceEpoch}));
+                                    if (ok != null && context.mounted) context.toast(l.scheduleMoved);
+                                  },
+                                )
+                              : null,
+                        ),
                       if (m.hostOnly)
                         ListTile(
                           dense: true,

@@ -1263,6 +1263,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get questionsPrepared => 'Questions prêtes.';
 
   @override
+  String reminderDay(String when, String code) {
+    return 'Rappel : match $when (code $code).';
+  }
+
+  @override
+  String reminderDropped(String code) {
+    return 'Le match $code a commencé sans vous : vous étiez dans une autre partie.';
+  }
+
+  @override
+  String reminderMoved(String code, String when) {
+    return 'Le match $code est déplacé : $when.';
+  }
+
+  @override
+  String reminderSoon(String code) {
+    return 'Le match $code commence dans 10 minutes.';
+  }
+
+  @override
+  String reminderStart(String code) {
+    return 'C’est l’heure : rejoignez le match $code.';
+  }
+
+  @override
+  String reminderStartCreator(String code) {
+    return 'C’est l’heure : lancez le match $code.';
+  }
+
+  @override
   String get report => 'Signaler ce pseudo';
 
   @override
@@ -1404,6 +1434,81 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scanTypeCode => 'Saisir le code';
+
+  @override
+  String get scheduleChange => 'Changer l’heure';
+
+  @override
+  String get scheduleDate => 'Jour du match';
+
+  @override
+  String scheduleInDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'dans $count jours',
+      one: 'dans 1 jour',
+      zero: 'dans moins d’un jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String scheduleInHours(int hours, int minutes) {
+    return 'dans $hours h $minutes min';
+  }
+
+  @override
+  String scheduleInMinutes(int minutes) {
+    return 'dans $minutes min';
+  }
+
+  @override
+  String get scheduleMoved => 'Heure changée : les joueurs sont prévenus.';
+
+  @override
+  String scheduleOn(String day, String time) {
+    return '$day à $time';
+  }
+
+  @override
+  String get scheduleSwitch => 'Programmer le match';
+
+  @override
+  String get scheduleSwitchHint =>
+      'Choisir le jour et l’heure : les joueurs s’inscrivent à l’avance et reçoivent des rappels.';
+
+  @override
+  String get scheduleTime => 'Heure du match';
+
+  @override
+  String scheduleToday(String time) {
+    return 'aujourd’hui à $time';
+  }
+
+  @override
+  String scheduleTomorrow(String time) {
+    return 'demain à $time';
+  }
+
+  @override
+  String get scheduleTooSoon =>
+      'Programmez le match au moins 5 minutes à l’avance.';
+
+  @override
+  String scheduledFor(String when) {
+    return 'Prévu $when';
+  }
+
+  @override
+  String get scheduledLobbyHint =>
+      'Inscrivez-vous et invitez dès maintenant ; rappels la veille et 10 minutes avant.';
+
+  @override
+  String get scheduledTitle => 'Matchs programmés';
+
+  @override
+  String get scheduledYouOrganize => 'vous organisez';
 
   @override
   String get settingsDark => 'Sombre';

@@ -23,7 +23,9 @@ void main() {
   // Version web : la page est servie par le serveur lui-même (même origine).
   final server = kIsWeb ? webBaseUri().origin : genieServer;
   final android = !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
-  final push = NoPushService();
+  // Notifications : Android seulement (pas de configuration Firebase pour le web).
+  // En arrière-plan : le premier écran n'attend pas Firebase.
+  final push = android ? PushService() : NoPushService();
   unawaited(push.init());
   runApp(
     ProviderScope(
